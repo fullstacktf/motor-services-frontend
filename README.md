@@ -4,7 +4,7 @@
 
 # Pick Auto 🚗
 
-Pick Auto is an application to help people with little time to manage the maintenance of their vehicles and keep the revisions up to date
+Pick Auto is an application to help people with little time to manage the services of their vehicles setting appointments between users and drivers, keeping the revisions up to date.
 
 
 ## 📁Project Structure
