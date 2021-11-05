@@ -15,17 +15,49 @@ pickauto
 │   docker-compose.yml    
 │
 └───motor-services-backend
-│   │   file011.txt
-│   │   file012.txt
-│   │
-│   └───subfolder1
-│       │   file111.txt
-│       │   file112.txt
-│       │   ...
+│   ├── controllers
+│   ├── db
+│   │   └── database.js
+│   ├── Dockerfile
+│   ├── index.js
+│   ├── init
+│   │   ├── 01_database_creation.sql
+│   │   ├── 02_user_creation.sql
+│   │   └── 03_db_tasks.sql
+│   ├── models
+│   ├── mysql_data
+│   │   ├── aria_log.00000001
+│   │   ├── aria_log_control
+│   │   ├── ib_buffer_pool
+│   │   ├── ibdata1
+│   │   ├── ib_logfile0
+│   │   ├── multi-master.info
+│   │   ├── mydatabase [error opening dir]
+│   │   ├── mysql [error opening dir]
+│   │   └── performance_schema [error opening dir]
+│   ├── package.json
+│   ├── package-lock.json
+│   └── routes
 │   
 └───motor-services-frontend
-    │   file021.txt
-    │   file022.txt
+│   ├── dist
+│   │   ├── index.3aefa2fc.css
+│   │   ├── index.e37c8fbd.js
+│   │   └── index.html
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.js
+│   ├── public
+│   ├── src
+│   │   ├── assets
+│   │   ├── components
+│   │   ├── index.html
+│   │   ├── js
+│   │   │   └── index.js
+│   │   └── styles
+│   │       └── index.css
+│   └── vite.config.js
 ```
 ## Installation
 
