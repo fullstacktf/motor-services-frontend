@@ -25,6 +25,7 @@ pickauto
 │   │   ├── 02_user_creation.sql
 │   │   └── 03_db_tasks.sql
 │   ├── models
+|   ├── node_modules
 │   ├── mysql_data
 │   │   ├── aria_log.00000001
 │   │   ├── aria_log_control
@@ -44,6 +45,7 @@ pickauto
 │   │   ├── index.3aefa2fc.css
 │   │   ├── index.e37c8fbd.js
 │   │   └── index.html
+|   ├── node_modules
 │   ├── Dockerfile
 │   ├── package.json
 │   ├── package-lock.json
