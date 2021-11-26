@@ -5,7 +5,10 @@
     "dev": "vite",
     "build": "rm -rf dist && vite build",
     "serve": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lint": "vite lint",
+    "test": "vite test:unit --watch --forceExit",
+    "test:ci": "vite test:unit"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
