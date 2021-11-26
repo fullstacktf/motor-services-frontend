@@ -7,7 +7,7 @@
     "serve": "vite preview",
     "deploy": "gh-pages -d dist",
     "lint": "vite lint",
-    "test": "vite test:unit --watch",
+    "test": "vite test:unit --watch --forceExit",
     "test:ci": "vite test:unit"
   },
   "devDependencies": {
