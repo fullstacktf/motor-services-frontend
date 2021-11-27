@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  react_client:
+    build: "./"
+    container_name: "react_client"
+    stdin_open: true
+    ports: 
+    - "8080:80"
+    networks:
+      - mern-app
+
+networks:
+  mern-app:
+    name: "mern-app"
