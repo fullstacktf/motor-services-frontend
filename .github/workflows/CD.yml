@@ -1,17 +1,23 @@
-name: DIGITALOCEAN_DEPLOY 
- 
-on: 
+name: Deploy Front End to Digital Ocean
+on:
   push:
-    branches: [ issue1 ]
+    branches: [main]
 
-jobs: 
-  Build:
-    runs-on: self-hosted 
-     
-    steps: 
-      - uses: actions/checkout@main 
-      - name: Create .env 
-        run: echo 'PORT=${{ secrets.PORT }}' > .env
-
-      - name: Run build 
-        run: docker-compose up -d
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Vue app
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{secrets.SSH_HOST}} # IP Digital Ocean
+          key: ${{secrets.SSH_KEY}} # Private SSH KEY
+          username: ${{ secrets.SSH_USERNAME }} # User of the server you use in SSH
+          #First clone docker-compose and start.sh
+          script: |
+            mkdir pickauto
+            cd pickauto
+            git@github.com:fullstacktf/motor-services-frontend.git
+            cd motor-services-frontend
+            ./front.sh
+            echo 'Deployment successfully to digital ocean' 
