@@ -2,15 +2,20 @@
   "name": "client",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "rm -rf dist && vite build",
     "serve": "vite preview",
-    "deploy": "gh-pages -d dist",
+    "build": "rm -rf dist && vite build",
     "lint": "vite lint",
+    "deploy": "gh-pages -d dist",
+    "dev": "vite",
     "test": "vite test:unit --watch --forceExit",
     "test:ci": "vite test:unit"
   },
+  "dependencies": {
+    "vue-router": "^3.5.3"
+  },
   "devDependencies": {
+    "@vue/cli-plugin-router": "^4.5.15",
+    "@vue/cli-service": "^4.5.15",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.2",
