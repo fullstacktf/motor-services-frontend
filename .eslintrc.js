@@ -1,19 +1,17 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true
+  root: true,
+  env: {
+    node: true
   },
-  "extends": [
-    "standard"
+  extends: [
+    'plugin:vue/essential',
+    '@vue/standard'
   ],
-  "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
+  parserOptions: {
+    parser: 'babel-eslint'
   },
-  "rules": {
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"],
-    "comma-dangle": ["error", "only-multiline"],
-    "space-before-function-paren": ["error", "never"]
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
-};
+}

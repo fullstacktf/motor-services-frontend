@@ -55,27 +55,33 @@ pickauto
 │   │       └── index.css
 │   └── vite.config.js
 ```
-## Installation
 
-Install my-project with npm
-
-```bash
-  npm install my-project
-  cd my-project
+## Project setup
 ```
-    
-## Deployment
-
-To deploy this project run
-
-```bash
-  npm run deploy
+npm install
 ```
 
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 🖥️ Tech Stack
 
-**Client:** React,
+**Client:** Vue,
 
 **Server:** Node, Express
 
@@ -130,4 +136,3 @@ Takes two numbers and returns the sum.
 - Live previews
 - Fullscreen mode
 - Cross platform
-

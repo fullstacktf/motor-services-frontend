@@ -1,27 +1,28 @@
 {
-  "name": "client",
-  "version": "0.0.0",
+  "name": "motor-services-frontend",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "rm -rf dist && vite build",
-    "serve": "vite preview",
-    "deploy": "gh-pages -d dist",
-    "lint": "vite lint",
-    "test": "vite test:unit --watch --forceExit",
-    "test:ci": "vite test:unit"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.2",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.1",
-    "gh-pages": "^3.2.3",
-    "postcss-nesting": "^8.0.1",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0",
-    "vite": "^2.6.10"
-  },
-  "keywords": [],
-  "license": "ISC"
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  }
 }
