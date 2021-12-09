@@ -1,12 +1,26 @@
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import iconLogo from '../assets/pickauto_logo.png';
+import '../styles/LoginForm.css'
+
 export default function LoginForm(){
 return (
-    <div>
+    <div className="container">
+         <img height= "250px" width="250px" src={iconLogo} alt="Hola mundo"></img>
+         <br></br>
         <label>E-mail</label><br></br>
-        <input placeholder="Email" type="email"></input> <br></br>
+        <TextField id="outlined-basic" label="User" variant="outlined" />
+        <br></br>
         <label>Contraseña</label><br></br>
-        <input placeholder="*********" type="password"></input><br></br>
-        <button>Iniciar Sesión</button><br></br>
-        <a href="http://www.">Regístrate si aún no tienes cuenta</a>
+        <TextField
+          id="filled-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          variant="outlined"
+        /><br></br>
+        <Button variant="contained">Iniciar Sesion</Button><br></br>
+        <a href="/register">Regístrate si aún no tienes cuenta</a>
     </div>
 )
 }

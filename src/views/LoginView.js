@@ -1,11 +1,11 @@
-import Title from '../components/Title';
-import LoginForm from '../components/LoginForm';
-import '../styles/LoginStyles.css'
+import LoginForm  from "../components/LoginForm";
 
+export default function LoginView (){
+   
+   
+   return(
+    <LoginForm></LoginForm>
 
+   )
 
-export default function LoginView(){
-    return (
-        <div class="container"><Title/><LoginForm/></div>
-    )
 }

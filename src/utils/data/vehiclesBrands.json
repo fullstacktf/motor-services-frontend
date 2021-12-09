@@ -1,0 +1,404 @@
+{
+    "items": [
+      {
+        "id": 1330,
+        "label": "ABARTH"
+      },
+      {
+        "id": 1355,
+        "label": "ACURA"
+      },
+      {
+        "id": 1,
+        "label": "ALFA ROMEO"
+      },
+      {
+        "id": 1377,
+        "label": "ALPINE"
+      },
+      {
+        "id": 238,
+        "label": "ARO"
+      },
+      {
+        "id": 1326,
+        "label": "ASIA"
+      },
+      {
+        "id": 2,
+        "label": "ASIA MOTORS"
+      },
+      {
+        "id": 3,
+        "label": "ASTON MARTIN"
+      },
+      {
+        "id": 4,
+        "label": "AUDI"
+      },
+      {
+        "id": 111,
+        "label": "AUSTIN"
+      },
+      {
+        "id": 1321,
+        "label": "AUVERLAND"
+      },
+      {
+        "id": 6,
+        "label": "BENTLEY"
+      },
+      {
+        "id": 241,
+        "label": "BERTONE"
+      },
+      {
+        "id": 7,
+        "label": "BMW"
+      },
+      {
+        "id": 1345,
+        "label": "BUGATTI"
+      },
+      {
+        "id": 1356,
+        "label": "BUICK"
+      },
+      {
+        "id": 1352,
+        "label": "BYD"
+      },
+      {
+        "id": 8,
+        "label": "CADILLAC"
+      },
+      {
+        "id": 1357,
+        "label": "CATERHAM"
+      },
+      {
+        "id": 9,
+        "label": "CHEVROLET"
+      },
+      {
+        "id": 10,
+        "label": "CHRYSLER"
+      },
+      {
+        "id": 11,
+        "label": "CITROEN"
+      },
+      {
+        "id": 1327,
+        "label": "CORVETTE"
+      },
+      {
+        "id": 1400,
+        "label": "CUPRA"
+      },
+      {
+        "id": 1011,
+        "label": "DACIA"
+      },
+      {
+        "id": 12,
+        "label": "DAEWOO"
+      },
+      {
+        "id": 13,
+        "label": "DAIHATSU"
+      },
+      {
+        "id": 145,
+        "label": "DAIMLER"
+      },
+      {
+        "id": 1359,
+        "label": "DATSUN"
+      },
+      {
+        "id": 1351,
+        "label": "DFSK"
+      },
+      {
+        "id": 173,
+        "label": "DODGE"
+      },
+      {
+        "id": 1401,
+        "label": "DR AUTOMOBILES"
+      },
+      {
+        "id": 1358,
+        "label": "DS"
+      },
+      {
+        "id": 146,
+        "label": "FERRARI"
+      },
+      {
+        "id": 14,
+        "label": "FIAT"
+      },
+      {
+        "id": 15,
+        "label": "FORD"
+      },
+      {
+        "id": 1397,
+        "label": "FUSO"
+      },
+      {
+        "id": 16,
+        "label": "GALLOPER"
+      },
+      {
+        "id": 1360,
+        "label": "GMC"
+      },
+      {
+        "id": 1361,
+        "label": "HOLDEN"
+      },
+      {
+        "id": 69,
+        "label": "HONDA"
+      },
+      {
+        "id": 234,
+        "label": "HUMMER"
+      },
+      {
+        "id": 18,
+        "label": "HYUNDAI"
+      },
+      {
+        "id": 1025,
+        "label": "INFINITI"
+      },
+      {
+        "id": 185,
+        "label": "INNOCENTI"
+      },
+      {
+        "id": 1405,
+        "label": "INVICTA"
+      },
+      {
+        "id": 19,
+        "label": "ISUZU"
+      },
+      {
+        "id": 126,
+        "label": "IVECO"
+      },
+      {
+        "id": 20,
+        "label": "JAGUAR"
+      },
+      {
+        "id": 21,
+        "label": "JEEP"
+      },
+      {
+        "id": 22,
+        "label": "KIA"
+      },
+      {
+        "id": 1349,
+        "label": "KTM"
+      },
+      {
+        "id": 153,
+        "label": "LADA"
+      },
+      {
+        "id": 243,
+        "label": "LAMBORGHINI"
+      },
+      {
+        "id": 23,
+        "label": "LANCIA"
+      },
+      {
+        "id": 24,
+        "label": "LAND-ROVER"
+      },
+      {
+        "id": 128,
+        "label": "LDV"
+      },
+      {
+        "id": 1407,
+        "label": "LEVC"
+      },
+      {
+        "id": 25,
+        "label": "LEXUS"
+      },
+      {
+        "id": 147,
+        "label": "LOTUS"
+      },
+      {
+        "id": 1404,
+        "label": "LYNK & CO"
+      },
+      {
+        "id": 246,
+        "label": "MAHINDRA"
+      },
+      {
+        "id": 26,
+        "label": "MASERATI"
+      },
+      {
+        "id": 1323,
+        "label": "MAYBACH"
+      },
+      {
+        "id": 27,
+        "label": "MAZDA"
+      },
+      {
+        "id": 1347,
+        "label": "MCLAREN"
+      },
+      {
+        "id": 28,
+        "label": "MERCEDES-BENZ"
+      },
+      {
+        "id": 29,
+        "label": "MG"
+      },
+      {
+        "id": 222,
+        "label": "MINI"
+      },
+      {
+        "id": 30,
+        "label": "MITSUBISHI"
+      },
+      {
+        "id": 149,
+        "label": "MORGAN"
+      },
+      {
+        "id": 31,
+        "label": "NISSAN"
+      },
+      {
+        "id": 32,
+        "label": "OPEL"
+      },
+      {
+        "id": 33,
+        "label": "PEUGEOT"
+      },
+      {
+        "id": 87,
+        "label": "PIAGGIO"
+      },
+      {
+        "id": 112,
+        "label": "PONTIAC"
+      },
+      {
+        "id": 34,
+        "label": "PORSCHE"
+      },
+      {
+        "id": 1348,
+        "label": "QOROS"
+      },
+      {
+        "id": 35,
+        "label": "RENAULT"
+      },
+      {
+        "id": 1329,
+        "label": "RENAULT V.I."
+      },
+      {
+        "id": 36,
+        "label": "ROLLS-ROYCE"
+      },
+      {
+        "id": 37,
+        "label": "ROVER"
+      },
+      {
+        "id": 38,
+        "label": "SAAB"
+      },
+      {
+        "id": 1399,
+        "label": "SAIC"
+      },
+      {
+        "id": 1328,
+        "label": "SANTANA"
+      },
+      {
+        "id": 39,
+        "label": "SEAT"
+      },
+      {
+        "id": 40,
+        "label": "SKODA"
+      },
+      {
+        "id": 41,
+        "label": "SMART"
+      },
+      {
+        "id": 42,
+        "label": "SSANGYONG"
+      },
+      {
+        "id": 43,
+        "label": "SUBARU"
+      },
+      {
+        "id": 44,
+        "label": "SUZUKI"
+      },
+      {
+        "id": 156,
+        "label": "TALBOT"
+      },
+      {
+        "id": 45,
+        "label": "TATA"
+      },
+      {
+        "id": 1354,
+        "label": "TESLA"
+      },
+      {
+        "id": 46,
+        "label": "TOYOTA"
+      },
+      {
+        "id": 1353,
+        "label": "TRIDENT"
+      },
+      {
+        "id": 1324,
+        "label": "UMM"
+      },
+      {
+        "id": 1325,
+        "label": "VAZ"
+      },
+      {
+        "id": 47,
+        "label": "VOLKSWAGEN"
+      },
+      {
+        "id": 48,
+        "label": "VOLVO"
+      }
+    ]
+  }
