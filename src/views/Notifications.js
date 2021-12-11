@@ -1,10 +1,8 @@
-
+import NotificationCard from "../components/NotificationsComponents/NotificationCard";
 
 export default function Notifications(){
 
     return (
-        <h1>
-            Notifications
-        </h1>
+        <NotificationCard></NotificationCard>
     )
 }

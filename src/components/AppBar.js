@@ -35,6 +35,7 @@ import Settings from '../views/Settings';
 import Notifications from '../views/Notifications';
 import Appointment from '../views/Appointments';
 import VehicleForm from '../views/VehicleForm';
+import Service from './ServiceComponents/Service';
 
 const DRAWER_WIDTH = 240
 const useStyles = makeStyles((theme)=>({
@@ -258,6 +259,8 @@ export default function AppBarResponsive(){
               <Route path="/appointments" element={<Appointment/>}>
               </Route>
               <Route path="/services" element={<Services/>}>
+              </Route>
+              <Route path="/services/serviceID" element={<Service/>}>
               </Route>
               <Route path="/settings" element={<Settings/>}>
               </Route>
