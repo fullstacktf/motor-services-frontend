@@ -3,6 +3,8 @@ import NotificationCard from "../components/NotificationsComponents/Notification
 export default function Notifications(){
 
     return (
+        <div>
         <NotificationCard></NotificationCard>
+        </div>
     )
 }

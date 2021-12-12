@@ -156,9 +156,6 @@ export default function FormVehicle() {
                 >
                     <Button variant="contained">Aceptar</Button>
                     <Button variant="contained">Cancelar</Button>
-
-
-
                 </Box>
             </Box>
         </Grid>
