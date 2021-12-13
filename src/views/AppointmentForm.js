@@ -1,6 +1,7 @@
-import FormAppointment from "../components/AppointmentComponents/FormAppointment";
+import FormAppointmentOwner from "../components/AppointmentComponents/FormAppointmentOwner";
+import FormAppointmentPicker from "../components/AppointmentComponents/FormAppointmentPicker";
 
 export default function AppointmentForm(){
 
-    return(<FormAppointment></FormAppointment>)
+    return(<FormAppointmentOwner></FormAppointmentOwner>)
 }

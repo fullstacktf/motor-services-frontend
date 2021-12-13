@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-
+import { Grid } from "@material-ui/core";
 
 const vehicles = [
     {
@@ -65,20 +64,33 @@ const pickers = [
     },
 ];
 
-export default function AppointmentForm() {
-    const [currency, setCurrency] = React.useState('EUR');
 
-    const handleChange = (event) => {
-        setCurrency(event.target.value);
+
+export default function AppointmentFormOwner() {
+    const [vehicle, setVehicle] = React.useState('Vehículo 1'); //<--- Esto hay que cambiarlo
+    const handleVehicle = (event) => {
+        setVehicle(event.target.value);
     };
-
-    const [value, setValue] = React.useState(new Date());
-
-
-
+    const [service, setService] = React.useState('Servicio 1');
+    const handleService = (event) => {
+        setService(event.target.value);
+    };
+    const [picker, setPicker] = React.useState('Picker 1');
+    const handlePicker = (event) => {
+        setPicker(event.target.value);
+    };
+    const [date, setDate] = React.useState(new Date());
+    const handleDate = (event) => {
+        setPicker(event.target.value);
+    };
+    const [text, setText] = React.useState('');
+    const handleText = (e) => {
+        setText(e.target.value)
+    }
 
     return (
-        <div>
+        <Grid container sx={{ alignItems: 'center' }} p={2} direction={"column"} spacing={1} style={{ height: "100%", width: '40%', margin: 'auto' }}>
+            <h1>Solicitar cita</h1>
             <Box
                 component="form"
                 sx={{
@@ -89,11 +101,11 @@ export default function AppointmentForm() {
             >
                 <div>
                     <TextField
-                        id="outlined-select-currency-native"
+                        id="outlined-select-vehicle-native"
                         select
                         label="Vehículo"
-                        value={currency}
-                        onChange={handleChange}
+                        value={vehicle}
+                        onChange={handleVehicle}
                         SelectProps={{
                             native: true,
                         }}
@@ -105,11 +117,11 @@ export default function AppointmentForm() {
                         ))}
                     </TextField>
                     <TextField
-                        id="outlined-select-currency-native"
+                        id="outlined-select-service-native"
                         select
                         label="Servicio"
-                        value={currency}
-                        onChange={handleChange}
+                        value={service}
+                        onChange={handleService}
                         SelectProps={{
                             native: true,
                         }}
@@ -125,11 +137,11 @@ export default function AppointmentForm() {
             </Box>
             <Box>
                 <TextField
-                    id="outlined-select-currency-native"
+                    id="outlined-select-picker-native"
                     select
                     label="Picker"
-                    value={currency}
-                    onChange={handleChange}
+                    value={picker}
+                    onChange={handlePicker}
                     SelectProps={{
                         native: true,
                     }}
@@ -147,15 +159,15 @@ export default function AppointmentForm() {
                     label="Sitio de recogida"
                     multiline
                     maxRows={4}
-                    onChange={handleChange}
+                    onChange={handleDate}
                 />
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateTimePicker
                         renderInput={(props) => <TextField {...props} />}
                         label="Fecha y hora de recogida"
-                        value={value}
+                        value={date}
                         onChange={(newValue) => {
-                            setValue(newValue);
+                            setDate(newValue);
                         }}
                     />
                 </LocalizationProvider>
@@ -166,7 +178,7 @@ export default function AppointmentForm() {
                     label="Sitio de entrega"
                     multiline
                     maxRows={4}
-                    onChange={handleChange}
+                    onChange={handleText}
                 />
             </Box>
             <Box>
@@ -175,7 +187,7 @@ export default function AppointmentForm() {
                     label="Taller"
                     multiline
                     maxRows={4}
-                    onChange={handleChange}
+                    onChange={handleText}
                 /></Box>
             <TextField
                 mt={2}
@@ -184,6 +196,6 @@ export default function AppointmentForm() {
                 multiline
                 rows={4}
             />
-        </div>
+        </Grid>
     );
 }
