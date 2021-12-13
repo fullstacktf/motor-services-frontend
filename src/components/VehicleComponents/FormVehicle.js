@@ -37,8 +37,8 @@ export default function FormVehicle() {
     return (
         <Grid className={classes.root} container spacing={2} xs={12}>
             <Box m={2} sm={4} xs={12}>
+            <h1>Añadir vehículo</h1>
                 <FormControl fullWidth>
-
                     <InputLabel>Marca</InputLabel>
                     <Select
                         label="Marca"
