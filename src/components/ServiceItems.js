@@ -4,7 +4,7 @@ import LocalCarWashIcon from '@mui/icons-material/LocalCarWash';
 import ElectricCarIcon from '@mui/icons-material/ElectricCar';
 import CarRepairIcon from '@mui/icons-material/CarRepair';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
-import BrushIcon from '@mui/icons-material/Brush';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
 
 export const servicesItem = [
     {
@@ -29,6 +29,6 @@ export const servicesItem = [
     },
     {
         name:"Chapa y Pintura",
-        icon: <BrushIcon/>
+        icon: <ColorLensIcon/>
     }
 ]

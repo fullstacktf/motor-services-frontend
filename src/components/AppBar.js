@@ -34,8 +34,10 @@ import Main from '../views/Main';
 import Settings from '../views/Settings';
 import Notifications from '../views/Notifications';
 import Appointment from '../views/Appointments';
+import AppointmentForm from '../views/AppointmentForm';
 import VehicleForm from '../views/VehicleForm';
 import ScheduleZoneForm from './ProfileComponents/ScheduleZoneForm';
+import Service from './ServiceComponents/Service';
 
 const DRAWER_WIDTH = 240
 const useStyles = makeStyles((theme)=>({
@@ -199,9 +201,10 @@ export default function AppBarResponsive(){
                                 variant="menu"
                                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                                 transformOrigin={{ vertical: "top", horizontal: "center" }}>
-                                    <MenuItem variant="h7" component={Link} to="/appointment" onClick={handleClose2}><Typography variant="h7">Citas en Curso</Typography></MenuItem>
-                                    <MenuItem variant="h7" component={Link} to="/appointment" onClick={handleClose2}><Typography variant="h7">Citas Anteriores</Typography></MenuItem>
-                                    <MenuItem variant="h7" component={Link} to="/appointment" onClick={handleClose2}><Typography variant="h7">Proximas Citas</Typography></MenuItem>
+                                    <MenuItem variant="h7" component={Link} to="/appointments/appointmentForm" onClick={handleClose2}><Typography variant="h7">Solicitar Cita</Typography></MenuItem>
+                                    <MenuItem variant="h7" component={Link} to="/appointments" onClick={handleClose2}><Typography variant="h7">Citas en Curso</Typography></MenuItem>
+                                    <MenuItem variant="h7" component={Link} to="/appointments" onClick={handleClose2}><Typography variant="h7">Citas Anteriores</Typography></MenuItem>
+                                    <MenuItem variant="h7" component={Link} to="/appointments" onClick={handleClose2}><Typography variant="h7">Proximas Citas</Typography></MenuItem>
                                 </Menu>
                             </Typography>
                             <Typography variant="h7">
@@ -258,7 +261,11 @@ export default function AppBarResponsive(){
               </Route>
               <Route path="/appointments" element={<Appointment/>}>
               </Route>
+              <Route path="/appointments/appointmentForm" element={<AppointmentForm/>}>
+              </Route>
               <Route path="/services" element={<Services/>}>
+              </Route>
+              <Route path="/services/serviceID" element={<Service/>}>
               </Route>
               <Route path="/settings" element={<Settings/>}>
               </Route>
