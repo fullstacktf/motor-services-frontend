@@ -26,7 +26,7 @@ import TodayIcon from '@material-ui/icons/Today';
 import {menuItems} from './MenuItems.js'
 
 
-import Logo from '../assets/pickauto_logo.png'
+import Logo from '../assets/images/pickauto_logo.png'
 // import menuItems from '../utils/ResponsiveDrawerIcons.json'
 import Vehicles from '../views/Vehicles';
 import Services from '../views/Services';
@@ -36,6 +36,7 @@ import Notifications from '../views/Notifications';
 import Appointment from '../views/Appointments';
 import AppointmentForm from '../views/AppointmentForm';
 import VehicleForm from '../views/VehicleForm';
+import ScheduleZoneForm from './ProfileComponents/ScheduleZoneForm';
 import Service from './ServiceComponents/Service';
 
 const DRAWER_WIDTH = 240
@@ -267,6 +268,8 @@ export default function AppBarResponsive(){
               <Route path="/services/serviceID" element={<Service/>}>
               </Route>
               <Route path="/settings" element={<Settings/>}>
+              </Route>
+              <Route path="/schedule" element={<ScheduleZoneForm/>}>
               </Route>
           </Routes>
 
