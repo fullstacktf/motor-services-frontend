@@ -1,76 +1,93 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { TextField, Button, Card, FormControl, FormLabel, Grid, InputLabel, MenuItem, Select, Box } from "@mui/material";
+import { CssBaseline } from "@material-ui/core";
 
+//icons
+import AddIcon from '@mui/icons-material/Add';
+import { useEffect, useState } from "react";
+import vehiclesBrands from '../../utils/data/vehiclesBrands.json'
+
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import { Grid } from "@material-ui/core";
+//Styles
+import { useStyles } from '../../styles/VehicleFormStyle'
 
 const states = [
     {
-        value: 'Vehículo 1',
-        label: 'Vehículo 1',
+        value: 'No recogido',
+        label: 'No recogido',
     },
     {
-        value: 'Vehículo 2',
-        label: 'Vehículo 2',
+        value: 'Camino al taller',
+        label: 'Camino al taller',
     },
     {
-        value: 'Vehículo 3',
-        label: 'Vehículo 3',
+        value: 'En el taller',
+        label: 'En el taller',
     },
     {
-        value: 'Vehículo 4',
-        label: 'Vehículo 4',
+        value: 'Camino al punto de entrega',
+        label: 'Camino al punto de entrega',
+    },
+    {
+        value: 'Entregado',
+        label: 'Entregado',
     },
 ];
 
+export default function AppointmentFormPicker() {
 
 
-export default function AppointmentFormOwner() {
-    const [state, setState] = React.useState('Vehículo 1'); //<--- Esto hay que cambiarlo
-    const handleVehicle = (event) => {
+    const classes = useStyles()
+
+    const [state, setState] = React.useState('Picker 1');
+    const handleState = (event) => {
         setState(event.target.value);
     };
 
     return (
-        <Grid container sx={{ alignItems: 'center' }} p={2} direction={"column"} spacing={1} style={{ height: "100%", width: '40%', margin: 'auto' }}>
-            <Box
-                component="form"
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <div>
+        <Grid className={classes.root} container spacing={2} xs={12}>
+            <Box xs={2} sm={4} lg={12}>
+                <h1>Actualizar cita</h1>
+                <Box mb={1}>
+                    <FormControl fullWidth>
+                        <InputLabel>Picker</InputLabel>
+                        <Select
+                            label="Estado"
+                            value={state}
+                            onChange={handleState}>
+                            {states.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box mb={1}>
                     <TextField
-                        id="outlined-select-vehicle-native"
-                        select
-                        label="Estado de la cita"
-                        value={state}
-                        onChange={handleVehicle}
-                        SelectProps={{
-                            native: true,
-                        }}
-                    >
-                        {states.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </TextField>
-                </div>
-
+                        mt={2}
+                        className={classes.formElement}
+                        id="outlined-multiline-static"
+                        label="Notas del Picker"
+                        multiline
+                        rows={4}
+                        fullWidth
+                    /></Box>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        bgcolor: 'background.paper',
+                    }}
+                >
+                    <Box mr={1}>
+                        <Button variant="contained">Aceptar</Button></Box>
+                    <Button variant="contained">Cancelar</Button>
+                </Box>
             </Box>
-            <TextField
-                mt={2}
-                id="outlined-multiline-static"
-                label="Notas del picker"
-                multiline
-                rows={4}
-            />
         </Grid>
-    );
+    )
 }

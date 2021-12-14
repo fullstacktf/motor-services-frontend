@@ -11,7 +11,7 @@ export default function CardService({ service }) {
             <Box mb={3} mr={6}>
                 <Card style={{ textAlign: 'center', height: '200px', width: '100%', margin: 'auto'}}>
                     <CardActionArea href="">
-                        <div style={{ backgroundColor: '#02B5E6', display: 'flex', alignItems: 'center', alignContent: 'center'}}>
+                        <div style={{ backgroundColor: '#02B5E6'}}>
                             <span> 
                                 {service.icon}
                             </span>
