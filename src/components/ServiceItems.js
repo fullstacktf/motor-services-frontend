@@ -9,7 +9,9 @@ import ColorLensIcon from '@mui/icons-material/ColorLens';
 export const servicesItem = [
     {
         name:"ITV",
-        icon: <FactCheckIcon/>
+        icon: <FactCheckIcon/>,
+        color: '#00B4D8'
+
     },
     {
         name:"Limpieza",

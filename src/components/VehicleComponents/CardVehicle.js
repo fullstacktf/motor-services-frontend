@@ -4,7 +4,7 @@ import { Card, CardContent, CardMedia, Grid, Box, Typography } from "@mui/materi
 export default function CardVehicle({vehicle}){
 
     return(
-        <Grid item sm={4}>
+        <Grid item sm={6} xs={12} md={4}>
             <Box mr={2} mb={3}>
                 <Card>
                     <CardMedia

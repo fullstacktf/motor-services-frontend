@@ -4,20 +4,16 @@ import { Link } from 'react-router-dom';
 
 export default function FloatingButton(){
 
-    const fabStyle = {
-        // position: 'fixed',
+    const style = {
         bottom: '16px',
         right: '16px',
-        color: '#fff',
+        color: '#FFF',
         backgroundColor:'#03045E'
     }
-
+  
     return(
-        // <Fab sx={fabStyle} component={Link} to='/vehicles/add'>
-        //     <AddIcon/>
-        // </Fab>
-        <Fab sx={fabStyle} component={Link} to='/vehicles/add'>
+        <Fab style={style} component={Link} to='/vehicles/add' size="large">
             <AddIcon/>
-        </Fab>
+        </Fab>    
     )
 }
