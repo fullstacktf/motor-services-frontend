@@ -1,7 +1,7 @@
 import {React,useState} from 'react'
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { AppBar, Box, CssBaseline, Divider, Drawer, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, MenuItem, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, CssBaseline, Divider, Drawer, Grid, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, MenuItem, Toolbar, Typography } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 
 
@@ -22,8 +22,21 @@ import PoolIcon from '@material-ui/icons/Pool';
 // import HomeIcon from '@material-ui/icons/Home';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import TodayIcon from '@material-ui/icons/Today';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+
 
 import {menuItems} from './MenuItems.js'
+
+//menu nested
+import ListSubheader from '@mui/material/ListSubheader';
+import ListItemButton from '@mui/material/ListItemButton';
+import Collapse from '@mui/material/Collapse';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import SendIcon from '@mui/icons-material/Send';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import StarBorder from '@mui/icons-material/StarBorder';
 
 
 import Logo from '../assets/images/pickauto_logo.png'
@@ -38,6 +51,9 @@ import AppointmentForm from '../views/AppointmentForm';
 import VehicleForm from '../views/VehicleForm';
 import ScheduleZoneForm from './ProfileComponents/ScheduleZoneForm';
 import Service from './ServiceComponents/Service';
+import IconLogo from './IconLogo';
+import EditProfile from '../views/EditProfile';
+import ProfileAvatar from './ProfileComponents/ProfileAvatar';
 
 const DRAWER_WIDTH = 240
 const useStyles = makeStyles((theme)=>({
@@ -134,19 +150,66 @@ export default function AppBarResponsive(){
       setAnchor2(null)
     }
 
+    const [opened, setOpened] = useState();
+
+    const openMenu = (item) => () =>{
+        if (opened == item.id){
+            setOpened()
+        } else {
+            setOpened(item.id)
+        }
+    }
+   
+    const nestedMenuItem = (item) =>{
+   
+       return <>
+            <ListItemButton onClick={openMenu(item)}>
+                    <ListItemIcon>
+                    {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.text} />
+                {item.id == opened ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={item.id == opened} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+            {
+          
+            item.nestedItems.map((menutItem)=>(
+            <ListItemButton sx={{ pl: 4 }} component={Link} to={menutItem.link}>
+                <ListItemIcon>
+                {menutItem.icon}
+                </ListItemIcon>
+                <ListItemText primary={menutItem.text} />
+            </ListItemButton>
+            ))
+
+            }
+            </List>
+            </Collapse>
+  
+        </>
+    }
 
     const drawerMenu = (
         <div>
             <div className={classes.toolbar}>
                 <Divider/>
+                <Grid item xs={12}>
+                    <ProfileAvatar/>
+                    <Typography variant="h7">Username</Typography>
+                </Grid>
+                
                 <List>
                     {
-                        menuItems.map((item,i)=>(
+                        menuItems.map((item,i)=>{
+                            return item.nestedItems.length > 0 ? 
+                            nestedMenuItem(item)
+                            :
                             <ListItem component={Link} to={item.link} button key={item.text}>
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText primary={item.text} />
-                            </ListItem>
-                        ))
+                            </ListItem> 
+                        })
                     }
                 </List>
             </div>
@@ -169,7 +232,7 @@ export default function AppBarResponsive(){
                             <MenuIcon />
                         </IconButton>
                         <Link to="/">
-                            <img className={classes.logo} src={Logo}/>
+                            <IconLogo/>
                         </Link>
                         <Box xs={12} style={{position:'absolute',display:'flex',right:'0', marginRight:'1.5rem'}}>
                             <Typography variant="h7">
@@ -210,7 +273,9 @@ export default function AppBarResponsive(){
                             <Typography variant="h7">
                                 <Link className={classes.link} to="/settings">Configuracion</Link>
                             </Typography>
-                            <Typography variant="h7"></Typography>
+                            <Typography variant="h7">
+                                <Link className={classes.link} to="/"><LogoutIcon/></Link>
+                            </Typography>
                         </Box>
                     </Toolbar>
                 </AppBar>
@@ -253,6 +318,8 @@ export default function AppBarResponsive(){
               </Route>
               <Route path="/profile" element={<Profile/>}>
               </Route>
+              <Route path="/editProfile" element={<EditProfile/>}>
+              </Route>
               <Route path="/vehicles" element={<Vehicles/>}>
               </Route>
               <Route path="/vehicles/add" element={<VehicleForm/>}>
@@ -269,7 +336,7 @@ export default function AppBarResponsive(){
               </Route>
               <Route path="/settings" element={<Settings/>}>
               </Route>
-              <Route path="/schedule" element={<ScheduleZoneForm/>}>
+              <Route path="/user/schedule" element={<ScheduleZoneForm/>}>
               </Route>
           </Routes>
 

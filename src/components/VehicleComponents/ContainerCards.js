@@ -3,24 +3,16 @@ import { useEffect, useState } from 'react'
 import CardVehicle from './CardVehicle'
 import vehiclesData from '../../utils/data/vehicles.json'
 import FloatingButton from '../FloatingButton'
+import axios from 'axios'
 
 export default function ContainerCards(){
 
     const [vehicles, setVehicle] = useState([])
 
     const getVehicles = async() => {
-        setVehicle(vehiclesData)
-        console.log(vehicles);
-
-        // const requestOptions = {
-        //     method: 'GET',
-        //     body: { "owner_id":12345671 }
-        // };
-
-        // await fetch('http://127.0.0.1:3001/vehicles',requestOptions)
-        //     .then(response=> console.log(response.json()))
-        //     .then(data => setVehicle(data))
-        //     .catch(err=>console.error(err))        
+        await axios.get('http://localhost:3001/vehicles/user/12345671')
+        .then(res=>{setVehicle(res.data)  })
+        .catch(err=>console.log(err))   
     }
 
     useEffect(() => {
@@ -28,12 +20,15 @@ export default function ContainerCards(){
     }, [])
 
     return(
-        <Grid container xs={12}>
+        <Grid container xs={12} md={12} style={{height:'100vh'}}>
                 {
                     !vehicles.length ? <h1>No hay vehiculos</h1> : vehicles.map((vehicle) =>(
                         <CardVehicle vehicle={vehicle}></CardVehicle>
                     ))
                 }
+            <div style={{width: '100%', display: 'flex',alignItems: 'flex-end',  flexDirection: 'column'}}>
+            <FloatingButton></FloatingButton>
+            </div>
         </Grid>
 
     )

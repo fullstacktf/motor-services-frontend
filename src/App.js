@@ -1,3 +1,4 @@
+import  React , {useState}  from 'react';
 import logo from './logo.svg';
 import {
   BrowserRouter as Router,
@@ -26,7 +27,15 @@ import DataFetching from './components/DataFetching'
 function App() {
   
   //Cambiar a useState
-  const userLogin = true;
+  const [userLogin, setUserLogin] = useState(true);
+  const [userRegister, setUserRegister] = useState(true);
+  // const userLogin = true;
+  // const registerMode = true;
+
+  if(!userLogin && userRegister) {
+    return <Register/>
+  }
+
   if (!userLogin){
     return <LoginView/>
   }

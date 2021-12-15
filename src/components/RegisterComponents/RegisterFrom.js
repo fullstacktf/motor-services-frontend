@@ -202,7 +202,7 @@ export default function RegisterForm(){
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Link to="/">¿Tienes una cuenta? Inicia Sesión</Link>
+                            {/* <Link to="/">¿Tienes una cuenta? Inicia Sesión</Link> */}
                         </Grid>
                     </Grid>
                 </Box>

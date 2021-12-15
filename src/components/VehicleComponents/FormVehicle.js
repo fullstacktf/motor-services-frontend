@@ -1,5 +1,5 @@
-import { TextField, Button, Card, FormControl, FormLabel, Grid, InputLabel, MenuItem, Select, Box } from "@mui/material";
-import { CssBaseline } from "@material-ui/core";
+import { Container, TextField, Button, Card, FormControl, FormLabel, Grid, InputLabel, MenuItem, Select, Box } from "@mui/material";
+
 
 //icons
 import AddIcon from '@mui/icons-material/Add';
@@ -8,23 +8,46 @@ import vehiclesBrands from '../../utils/data/vehiclesBrands.json'
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios'
 
 //Styles
-import { useStyles } from '../../styles/VehicleFormStyle'
+import {useStyles} from '../../styles/FormsStyle'
 
 export default function FormVehicle() {
 
     const [brands, setBrandsArray] = useState([])
     const [brandForm, setBrandForm] = useState('')
+    
+    const [models, setModels] = useState([])
+    const [model, setModel] = useState('')
 
     const classes = useStyles()
 
     const handleChange = (e) => {
+
         setBrandForm(e.target.value)
+        console.log('====================================');
+        console.log(e.target.value);
+        console.log('====================================');
+        getModels(e.target.value)
+
+    }
+
+    const getModels = async(idBrand) =>{
+
+        await axios.get(`https://ms-mt--api-web.spain.advgo.net/vehicle-specs/v1/models?section1Id=2500&makeId=${idBrand}&includeManual=true`,{
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS)',
+              'x-adevinta-channel': 'web-desktop',
+              'x-schibsted-tenant': 'coches'
+            }
+          })
+            .then(res=>setModels(res))
+            .catch(err=>console.log(err))
+        console.log(models);
     }
 
     const getBrands = async () => {
-        console.log(vehiclesBrands.items);
         setBrandsArray(vehiclesBrands.items)
     }
 
@@ -35,9 +58,10 @@ export default function FormVehicle() {
 
 
     return (
-        <Grid className={classes.root} container spacing={2} xs={12}>
-            <Box m={2} sm={4} xs={12}>
+        <Container spacing={2} xs={12}>
+            <div className={classes.root}>
             <h1>Añadir vehículo</h1>
+            <Grid container md={6} xs={12}>
                 <FormControl fullWidth>
                     <InputLabel>Marca</InputLabel>
                     <Select
@@ -46,11 +70,13 @@ export default function FormVehicle() {
                         onChange={handleChange}>
                         {
                             brands.map((element) => (
-                                <MenuItem value={element.label}>{element.label}</MenuItem>
+                                <MenuItem value={element.id}>{element.label}</MenuItem>
                             ))
                         }
                     </Select>
                 </FormControl>
+                </Grid>
+                <Grid container md={6} xs={12}>
                 <FormControl fullWidth>
                     <InputLabel>Modelo</InputLabel>
                     <Select
@@ -62,7 +88,8 @@ export default function FormVehicle() {
                         <MenuItem value="3">Ford Focus</MenuItem>
                     </Select>
                 </FormControl>
-                <Grid container xs={12}>
+                </Grid>
+                <Grid container md={6} xs={12}>
                     <Grid item sm={6} xs={12}>
                         <TextField
                             id="outlined-multiline-flexible"
@@ -80,9 +107,9 @@ export default function FormVehicle() {
                             maxRows={4}
                             onChange={handleChange}
                         />
-                    </Grid>
+                    </Grid> 
                 </Grid>
-                <Grid container xs={12}>
+                <Grid container xs={12} md={6}>
                     <Grid item sm={6} xs={12}>
                         <TextField
                             id="outlined-multiline-flexible"
@@ -102,27 +129,31 @@ export default function FormVehicle() {
                         />
                     </Grid>
                 </Grid>
-                <FormControl fullWidth>
-                    <InputLabel>Combustible</InputLabel>
-                    <Select
-                        label="Combustible"
-                        value={brandForm}
-                        onChange={handleChange}>
-                        <MenuItem value="1">Gasolina</MenuItem>
-                        <MenuItem value="2">Diésel</MenuItem>
-                        <MenuItem value="3">Eléctrico</MenuItem>
-                        <MenuItem value="3">Híbrido</MenuItem>
-                    </Select>
-                </FormControl>
-                <TextField
-                    mt={2}
-                    className={classes.formElement}
-                    id="outlined-multiline-static"
-                    label="Descripcion"
-                    multiline
-                    rows={4}
-                    fullWidth
-                />
+                <Grid container md={6} xs={12}>
+                    <FormControl fullWidth>
+                        <InputLabel>Combustible</InputLabel>
+                        <Select
+                            label="Combustible"
+                            value={brandForm}
+                            onChange={handleChange}>
+                            <MenuItem value="1">Gasolina</MenuItem>
+                            <MenuItem value="2">Diésel</MenuItem>
+                            <MenuItem value="3">Eléctrico</MenuItem>
+                            <MenuItem value="3">Híbrido</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid container md={6} xs={12}>
+                    <TextField
+                        mt={2}
+                        className={classes.formElement}
+                        id="outlined-multiline-static"
+                        label="Descripcion"
+                        multiline
+                        rows={4}
+                        fullWidth
+                    />
+                </Grid>
                 <Box
                     sx={{
                         display: 'flex',
@@ -154,10 +185,10 @@ export default function FormVehicle() {
                         bgcolor: 'background.paper',
                     }}
                 >
-                    <Button variant="contained">Aceptar</Button>
+                    <Button variant="contained">Añadir</Button>
                     <Button variant="contained">Cancelar</Button>
                 </Box>
-            </Box>
-        </Grid>
+            </div>
+        </Container>
     )
 }
