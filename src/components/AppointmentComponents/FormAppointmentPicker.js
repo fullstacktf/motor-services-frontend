@@ -48,8 +48,8 @@ export default function AppointmentFormPicker() {
     };
 
     return (
-        <Grid className={classes.root} container spacing={2} xs={12}>
-            <Box xs={2} sm={4} lg={12}>
+        <Grid className={classes.root} spacing={2} xs={4}>
+            <Box>
                 <h1>Actualizar cita</h1>
                 <Box mb={1}>
                     <FormControl fullWidth>
@@ -83,9 +83,8 @@ export default function AppointmentFormPicker() {
                         bgcolor: 'background.paper',
                     }}
                 >
-                    <Box mr={1}>
-                        <Button variant="contained">Aceptar</Button></Box>
-                    <Button variant="contained">Cancelar</Button>
+                        <Button variant="contained">Aceptar</Button>
+                        <Button variant="contained">Cancelar</Button>
                 </Box>
             </Box>
         </Grid>

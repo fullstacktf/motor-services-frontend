@@ -3,5 +3,5 @@ import FormAppointmentPicker from "../components/AppointmentComponents/FormAppoi
 
 export default function AppointmentForm(){
 
-    return(<FormAppointmentOwner></FormAppointmentOwner>)
+    return(<FormAppointmentPicker></FormAppointmentPicker>)
 }

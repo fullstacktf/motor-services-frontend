@@ -1,5 +1,5 @@
 import { Card, Grid } from "@material-ui/core";
-import { CardContent, CardActionArea, Typography  } from "@mui/material";
+import { CardContent, CardActionArea, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Link } from 'react-router-dom';
 
@@ -9,16 +9,16 @@ export default function CardService({ service }) {
     return (
         <Grid item sm={4}>
             <Box mb={3} mr={6}>
-                <Card style={{ textAlign: 'center', height: '200px', width: '100%', margin: 'auto'}}>
-                    <CardActionArea href="">
-                        <div style={{ backgroundColor: '#02B5E6'}}>
-                            <span> 
-                                {service.icon}
+                <Card style={{ textAlign: 'center', width: '100%', margin: 'auto', borderRadius: '20px' }} component={Link} to='/services/serviceID' >
+                    <CardActionArea href="" style={{ borderRadius: '3px', border: '1px solid #03045E' }}>
+                        <div style={{ backgroundColor: '#023E8A', color: 'white', fontSize: '15px' }}>
+                            <span>
+                                {service.name}
                             </span>
                         </div>
-                        <CardContent style={{height: '100%', lineHeight: '100px' , textAlign: 'center'}}>
-                            <Typography gutterBottom variant="h5" component="div" component={Link} to='/services/serviceID' style={{textDecoration: 'none'}}>
-                                {service.name}
+                        <CardContent style={{ height: '100%', lineHeight: '100px', textAlign: 'center', color: 'black' }}>
+                            <Typography gutterBottom variant="h5" component="div" style={{ textDecoration: 'none' }}>
+                                {service.icon}
                             </Typography>
                         </CardContent>
                     </CardActionArea>
