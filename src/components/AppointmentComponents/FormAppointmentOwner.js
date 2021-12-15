@@ -1,11 +1,37 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { TextField, Button, Card, FormControl, FormLabel, Grid, InputLabel, MenuItem, Select, Box } from "@mui/material";
+import { CssBaseline } from "@material-ui/core";
 
+//icons
+import AddIcon from '@mui/icons-material/Add';
+import { useEffect, useState } from "react";
+import vehiclesBrands from '../../utils/data/vehiclesBrands.json'
+
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import { Grid } from "@material-ui/core";
+//Styles
+import { useStyles } from '../../styles/VehicleFormStyle'
+
+const pickers = [
+    {
+        value: 'Picker 1',
+        label: 'Picker 1',
+    },
+    {
+        value: 'Picker 2',
+        label: 'Picker 2',
+    },
+    {
+        value: 'Picker 3',
+        label: 'Picker 3',
+    },
+    {
+        value: 'Picker 4',
+        label: 'Picker 4',
+    },
+];
 
 const vehicles = [
     {
@@ -45,157 +71,139 @@ const services = [
     },
 ];
 
-const pickers = [
-    {
-        value: 'Picker 1',
-        label: 'Picker 1',
-    },
-    {
-        value: 'Picker 2',
-        label: 'Picker 2',
-    },
-    {
-        value: 'Picker 3',
-        label: 'Picker 3',
-    },
-    {
-        value: 'Picker 4',
-        label: 'Picker 4',
-    },
-];
-
-
-
 export default function AppointmentFormOwner() {
-    const [vehicle, setVehicle] = React.useState('Vehículo 1'); //<--- Esto hay que cambiarlo
-    const handleVehicle = (event) => {
-        setVehicle(event.target.value);
-    };
-    const [service, setService] = React.useState('Servicio 1');
-    const handleService = (event) => {
-        setService(event.target.value);
-    };
+
+
+    const classes = useStyles()
+
+
+
+
     const [picker, setPicker] = React.useState('Picker 1');
     const handlePicker = (event) => {
         setPicker(event.target.value);
     };
-    const [date, setDate] = React.useState(new Date());
-    const handleDate = (event) => {
-        setPicker(event.target.value);
+
+    const [vehicle, setVehicle] = React.useState('Vehículo 1'); //<--- Esto hay que cambiarlo
+    const handleVehicle = (event) => {
+        setVehicle(event.target.value);
     };
+
+    const [service, setService] = React.useState('Servicio 1');
+    const handleService = (event) => {
+        setService(event.target.value);
+    };
+
     const [text, setText] = React.useState('');
     const handleText = (e) => {
         setText(e.target.value)
     }
 
+    const [date, setDate] = React.useState(new Date());
+    const handleDate = (event) => {
+        setPicker(event.target.value);
+    };
+
     return (
-        <Grid container sx={{ alignItems: 'center' }} p={2} direction={"column"} spacing={1} style={{ height: "100%", width: '40%', margin: 'auto' }}>
-            <h1>Solicitar cita</h1>
-            <Box
-                component="form"
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <div>
-                    <TextField
-                        id="outlined-select-vehicle-native"
-                        select
+        <Grid className={classes.root} container spacing={2} xs={12}>
+            <Box m={2} sm={4} xs={12}>
+                <h1>Solicitar cita</h1>
+                <Box mb={1}>
+                <FormControl fullWidth>
+                    <InputLabel>Picker</InputLabel>
+                    <Select
+                        label="Picker"
+                        value={picker}
+                        onChange={handlePicker}>
+                        {pickers.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </Select>
+                </FormControl>
+                </Box>
+                <Box mb={1}>
+                <FormControl fullWidth>
+                    <InputLabel>Vehículo</InputLabel>
+                    <Select
                         label="Vehículo"
                         value={vehicle}
-                        onChange={handleVehicle}
-                        SelectProps={{
-                            native: true,
-                        }}
-                    >
+                        onChange={handleVehicle}>
                         {vehicles.map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
                             </option>
                         ))}
-                    </TextField>
-                    <TextField
-                        id="outlined-select-service-native"
-                        select
-                        label="Servicio"
-                        value={service}
-                        onChange={handleService}
-                        SelectProps={{
-                            native: true,
-                        }}
-                    >
-                        {services.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </TextField>
-                </div>
-
-            </Box>
-            <Box>
-                <TextField
-                    id="outlined-select-picker-native"
-                    select
-                    label="Picker"
-                    value={picker}
-                    onChange={handlePicker}
-                    SelectProps={{
-                        native: true,
-                    }}
-                >
-                    {pickers.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </TextField>
-            </Box>
-            <Box>
-                <TextField
-                    id="outlined-multiline-flexible"
-                    label="Sitio de recogida"
-                    multiline
-                    maxRows={4}
-                    onChange={handleDate}
-                />
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DateTimePicker
-                        renderInput={(props) => <TextField {...props} />}
-                        label="Fecha y hora de recogida"
-                        value={date}
-                        onChange={(newValue) => {
-                            setDate(newValue);
-                        }}
-                    />
-                </LocalizationProvider>
-            </Box>
-            <Box>
+                    </Select>
+                </FormControl>
+                </Box>
+                <Grid container xs={12}>
+                    <Grid item sm={6} xs={12} mb={1}>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Sitio de recogida"
+                            multiline
+                            maxRows={4}
+                            onChange={handleText}
+                        />
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DateTimePicker
+                                renderInput={(props) => <TextField {...props} />}
+                                label="Fecha y hora de recogida"
+                                value={date}
+                                onChange={(newValue) => {
+                                    setDate(newValue);
+                                }}
+                            />
+                        </LocalizationProvider>
+                    </Grid>
+                </Grid>
+                <Box mb={1}>
                 <TextField
                     id="outlined-multiline-flexible"
                     label="Sitio de entrega"
                     multiline
                     maxRows={4}
-                    onChange={handleText}
-                />
-            </Box>
-            <Box>
-                <TextField
-                    id="outlined-multiline-flexible"
-                    label="Taller"
-                    multiline
-                    maxRows={4}
-                    onChange={handleText}
+                    fullWidth
                 /></Box>
-            <TextField
-                mt={2}
-                id="outlined-multiline-static"
-                label="Notas del usuario"
-                multiline
-                rows={4}
-            />
+                <Box mb={1}>
+                <FormControl fullWidth>
+                    <InputLabel>Servicio</InputLabel>
+                    <Select
+                        label="Servicio"
+                        value={service}
+                        onChange={handleService}>
+                        {services.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </Select>
+                </FormControl></Box>
+                <Box mb={1}>
+                <TextField
+                    mt={2}
+                    className={classes.formElement}
+                    id="outlined-multiline-static"
+                    label="Notas del usuario"
+                    multiline
+                    rows={4}
+                    fullWidth
+                /></Box>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        bgcolor: 'background.paper',
+                    }}
+                >
+                    <Button variant="contained">Aceptar</Button>
+                    <Button variant="contained">Cancelar</Button>
+                </Box>
+            </Box>
         </Grid>
-    );
+    )
 }
