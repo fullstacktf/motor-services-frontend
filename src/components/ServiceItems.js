@@ -10,7 +10,6 @@ export const servicesItem = [
     {
         name:"ITV",
         icon: <FactCheckIcon/>,
-        color: '#00B4D8'
 
     },
     {

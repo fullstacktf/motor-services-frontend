@@ -8,6 +8,7 @@ import vehiclesBrands from '../../utils/data/vehiclesBrands.json'
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios'
 
 //Styles
 import {useStyles} from '../../styles/FormsStyle'
@@ -16,11 +17,34 @@ export default function FormVehicle() {
 
     const [brands, setBrandsArray] = useState([])
     const [brandForm, setBrandForm] = useState('')
+    
+    const [models, setModels] = useState([])
+    const [model, setModel] = useState('')
 
     const classes = useStyles()
 
     const handleChange = (e) => {
+
         setBrandForm(e.target.value)
+        console.log('====================================');
+        console.log(e.target.value);
+        console.log('====================================');
+        getModels(e.target.value)
+
+    }
+
+    const getModels = async(idBrand) =>{
+
+        await axios.get(`https://ms-mt--api-web.spain.advgo.net/vehicle-specs/v1/models?section1Id=2500&makeId=${idBrand}&includeManual=true`,{
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS)',
+              'x-adevinta-channel': 'web-desktop',
+              'x-schibsted-tenant': 'coches'
+            }
+          })
+            .then(res=>setModels(res))
+            .catch(err=>console.log(err))
+        console.log(models);
     }
 
     const getBrands = async () => {
