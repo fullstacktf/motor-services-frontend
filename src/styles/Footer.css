@@ -1,0 +1,15 @@
+.father {
+    background: #03045E;
+    position:fixed;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    align-items: center;
+    color: white;
+    }
