@@ -58,7 +58,6 @@ function App() {
               <Route path="/settings" element={<Settings/>}></Route>
         </Routes>
     </Router> */}
-    <DataFetching/>
     <Footer></Footer>
     </div>
   );
