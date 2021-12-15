@@ -21,6 +21,8 @@ import Appointment from './views/Appointments';
 import VehicleForm from './views/VehicleForm';
 import Profile from './views/Profile'
 import Register from './views/Register';
+import Footer from './components/Footer';
+import DataFetching from './components/DataFetching'
 
 function App() {
   
@@ -56,6 +58,8 @@ function App() {
               <Route path="/settings" element={<Settings/>}></Route>
         </Routes>
     </Router> */}
+    <DataFetching/>
+    <Footer></Footer>
     </div>
   );
 }

@@ -9,27 +9,26 @@ import ColorLensIcon from '@mui/icons-material/ColorLens';
 export const servicesItem = [
     {
         name:"ITV",
-        icon: <FactCheckIcon/>,
-
+        icon: <FactCheckIcon style={{ fontSize: 40 }}/>
     },
     {
         name:"Limpieza",
-        icon: <LocalCarWashIcon/>
+        icon: <LocalCarWashIcon style={{ fontSize: 40 }}/>
     },
     {
         name:"Mantenimiento",
-        icon: <CarRepairIcon/>
+        icon: <CarRepairIcon style={{ fontSize: 40 }}/>
     },
     {
         name:"Transporte",
-        icon: <DirectionsCarIcon/>
+        icon: <DirectionsCarIcon style={{ fontSize: 40 }}/>
     },
     {
         name:"Electricista",
-        icon: <ElectricCarIcon/>
+        icon: <ElectricCarIcon style={{ fontSize: 40 }}/>
     },
     {
         name:"Chapa y Pintura",
-        icon: <ColorLensIcon/>
+        icon: <ColorLensIcon style={{ fontSize: 40 }}/>
     }
 ]
