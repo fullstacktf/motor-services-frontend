@@ -1,7 +1,21 @@
-import { Card, CardContent, CardMedia, Grid, Box, Typography } from "@mui/material";
+import { CardActions } from "@material-ui/core";
+import { Card, CardContent, CardMedia, Grid, Box, Typography, IconButton } from "@mui/material";
 
+//Icons
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { Link } from "react-router-dom";
 
 export default function CardVehicle({vehicle}){
+
+    const handleEdit = () => {
+
+    }
+
+    const handleDelete = () => {
+
+    }
+
 
     return(
         <Grid item sm={6} xs={12} md={4}>
@@ -23,6 +37,10 @@ export default function CardVehicle({vehicle}){
                             {vehicle.kilometers}km
                         </Typography>
                     </CardContent>
+                    <CardActions>
+                        <IconButton onClick={handleEdit}><Link to={"/vehicle/edit/"+vehicle.plate_number}></Link><EditIcon/></IconButton>
+                        <IconButton onClick={handleDelete}><DeleteIcon/></IconButton>
+                    </CardActions>
                 </Card>
             </Box>
         </Grid>

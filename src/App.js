@@ -1,4 +1,4 @@
-import  React , {useState}  from 'react';
+import  React , {useEffect, useState}  from 'react';
 import logo from './logo.svg';
 import {
   BrowserRouter as Router,
@@ -30,18 +30,31 @@ function App() {
   // const userLogin = true;
   // const registerMode = true;
 
-  if(!userLogin && userRegister) {
-    return <Register/>
+  // useEffect(() => {
+  //   setUserLogin(false)
+  //   setUserRegister(true)
+  // },[])
+
+  const handleLogout = (userLogout) => {
+    setUserLogin(userLogout);
   }
 
   if (!userLogin){
     return <LoginView/>
   }
 
+  if(!userLogin && userRegister) {
+    return <Register/>
+  }
+
+
+
+
+
   return (
   
     <div>
-    <AppBarResponsive></AppBarResponsive>
+    <AppBarResponsive userState={userLogin} onChange={handleLogout}></AppBarResponsive>
     {/* <Router>
        <Routes>
               <Route path="/" element={<Main/>}></Route>
