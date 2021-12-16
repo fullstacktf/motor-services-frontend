@@ -1,7 +1,7 @@
 import {React,useState} from 'react'
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { AppBar, Box, CssBaseline, Divider, Drawer, Grid, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, MenuItem, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, Button, CssBaseline, Divider, Drawer, Grid, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, MenuItem, Toolbar, Typography } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 
 
@@ -54,6 +54,7 @@ import Service from './ServiceComponents/Service';
 import IconLogo from './IconLogo';
 import EditProfile from '../views/EditProfile';
 import ProfileAvatar from './ProfileComponents/ProfileAvatar';
+import Register from '../views/Register';
 
 const DRAWER_WIDTH = 240
 const useStyles = makeStyles((theme)=>({
@@ -120,7 +121,7 @@ const useStyles = makeStyles((theme)=>({
       },
 }))
 
-export default function AppBarResponsive(){
+export default function AppBarResponsive({userState,onChange}){
 
     const classes = useStyles();
     const theme = useTheme();
@@ -149,6 +150,12 @@ export default function AppBarResponsive(){
     const handleClose2 = () =>{
       setAnchor2(null)
     }
+
+    // const handleLogout = () => {
+    //     console.log("click");
+    //     userState.onChange(false)
+    //     console.log(userState);
+    // }
 
     const [opened, setOpened] = useState();
 
@@ -274,7 +281,7 @@ export default function AppBarResponsive(){
                                 <Link className={classes.link} to="/settings">Configuracion</Link>
                             </Typography>
                             <Typography variant="h7">
-                                <Link className={classes.link} to="/"><LogoutIcon/></Link>
+                                <Link className={classes.link} to="/" onClick={()=>onChange(false)}><LogoutIcon/></Link>
                             </Typography>
                         </Box>
                     </Toolbar>
@@ -316,6 +323,8 @@ export default function AppBarResponsive(){
           <Routes>
               <Route path="/" element={<Main/>}>
               </Route>
+              {/* <Route path="/register" element={<Register/>}>
+              </Route> */}
               <Route path="/profile" element={<Profile/>}>
               </Route>
               <Route path="/editProfile" element={<EditProfile/>}>
@@ -323,6 +332,8 @@ export default function AppBarResponsive(){
               <Route path="/vehicles" element={<Vehicles/>}>
               </Route>
               <Route path="/vehicles/add" element={<VehicleForm/>}>
+              </Route>
+              <Route path="/vehicle/edit/:idVehicle" element={<VehicleForm/>}>
               </Route>
               <Route path="/notifications" element={<Notifications/>}>
               </Route>
