@@ -1,3 +1,4 @@
+import  React , {useEffect, useState}  from 'react';
 import logo from './logo.svg';
 import {
   BrowserRouter as Router,
@@ -26,15 +27,36 @@ import DataFetching from './components/DataFetching'
 function App() {
   
   //Cambiar a useState
-  const userLogin = true;
+  const [userLogin, setUserLogin] = useState(true);
+  const [userRegister, setUserRegister] = useState(true);
+  // const userLogin = true;
+  // const registerMode = true;
+
+  // useEffect(() => {
+  //   setUserLogin(false)
+  //   setUserRegister(true)
+  // },[])
+
+  const handleLogout = (userLogout) => {
+    setUserLogin(userLogout);
+  }
+
   if (!userLogin){
     return <LoginView/>
   }
 
+  if(!userLogin && userRegister) {
+    return <Register/>
+  }
+
+
+
+
+
   return (
   
     <div>
-    <AppBarResponsive></AppBarResponsive>
+    <AppBarResponsive userState={userLogin} onChange={handleLogout}></AppBarResponsive>
     {/* <Router>
        <Routes>
               <Route path="/" element={<Main/>}></Route>
@@ -49,7 +71,6 @@ function App() {
               <Route path="/settings" element={<Settings/>}></Route>
         </Routes>
     </Router> */}
-    <DataFetching/>
     <Footer></Footer>
     </div>
   );

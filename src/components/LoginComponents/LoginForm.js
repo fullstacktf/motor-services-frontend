@@ -5,7 +5,7 @@ import '../../styles/LoginForm.css'
 import { Avatar, getImageListItemBarUtilityClass } from '@mui/material';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import { Box, Checkbox, FormControlLabel, FormGroup, Grid, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import Link from '@mui/material/Link';
 import LoginImage from '../../assets/images/login_image2.jpg'
 
 export default function LoginForm(){
@@ -56,9 +56,9 @@ export default function LoginForm(){
               </Button>
               <Grid container xs={12}>
                   <Grid item xs>
-                    <a variant="body2"  href="/register" variant="body2">
+                    <Link variant="body2"  href="/register" variant="body2">
                       Registrate si aun no tienes cuenta
-                    </a>
+                    </Link>
                   </Grid>
               </Grid>
             </Box>
