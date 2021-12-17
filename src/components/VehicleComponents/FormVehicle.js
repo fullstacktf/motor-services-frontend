@@ -25,11 +25,8 @@ export default function FormVehicle() {
 
     const handleChange = (e) => {
 
-        setBrandForm(e.target.value)
-        console.log('====================================');
-        console.log(e.target.value);
-        console.log('====================================');
-        getModels(e.target.value)
+        setBrandForm(e.target.value);
+        getModels(e.target.value);
 
     }
 
@@ -50,6 +47,8 @@ export default function FormVehicle() {
     const getBrands = async () => {
         setBrandsArray(vehiclesBrands.items)
     }
+
+    
 
     useEffect(() => {
         getBrands()
