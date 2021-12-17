@@ -11,7 +11,7 @@ export default function ContainerCards(){
 
     const getVehicles = async() => {
         await axios.get('http://localhost:3001/vehicles/user/12345671')
-        .then(res=>{setVehicle(res.data)  })
+        .then(res=>{setVehicle(res.data)})
         .catch(err=>console.log(err))   
     }
 
