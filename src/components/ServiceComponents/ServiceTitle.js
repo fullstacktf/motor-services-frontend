@@ -1,6 +1,6 @@
-export default function Service( service) {
+export default function ServiceTitle( service) {
     return (
         
-        <h1>Título del servicio{service.name}</h1>
+        <h1>Titulo</h1>
     );
 }
