@@ -338,6 +338,8 @@ export default function AppBarResponsive({userState,onChange}){
               </Route>
               <Route path="/vehicle/edit/:idVehicle" element={<EditVehicle/>}>
               </Route>
+              <Route path="/vehicle/edit/:idVehicle" element={<VehicleForm/>}>
+              </Route>
               <Route path="/notifications" element={<Notifications/>}>
               </Route>
               <Route path="/appointments" element={<Appointment/>}>
