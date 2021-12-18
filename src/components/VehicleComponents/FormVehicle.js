@@ -65,6 +65,8 @@ export default function FormVehicle({edit, vehicleEdit}) {
         setBrandsArray(vehiclesBrands.items)
     }
 
+    
+
     useEffect(() => {
         console.log("Edit",vehicleEdit);
         if (edit){
