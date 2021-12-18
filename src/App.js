@@ -27,32 +27,40 @@ import DataFetching from './components/DataFetching'
 function App() {
   
   //Cambiar a useState
-  const [userLogin, setUserLogin] = useState(true);
-  const [userRegister, setUserRegister] = useState(true);
+  const [userLogin, setUserLogin] = useState();
+  const [userRegister, setUserRegister] = useState();
+
+  // const [userLogin, setUserLogin] = useState(false);
+  // const [userRegister, setUserRegister] = useState(false);
   // const userLogin = true;
   // const registerMode = true;
 
-  // useEffect(() => {
-  //   setUserLogin(false)
-  //   setUserRegister(true)
-  // },[])
+  useEffect(() => {
+    setUserLogin(false);
+    setUserRegister(true)
+  },[])
 
   const handleLogout = (userLogout) => {
     setUserLogin(userLogout);
   }
 
-  if (!userLogin){
-    return <LoginView/>
+
+  const handleRegister = (userState) => {
+    setUserRegister(userState);
+    console.log(userRegister);
   }
+
+  
 
   if(!userLogin && userRegister) {
     return <Register/>
   }
 
+  if (!userLogin){
+    return <LoginView userRegisterState={userRegister} onChange={handleRegister}/>
+  }
 
-
-
-
+  
   return (
   
     <div>
