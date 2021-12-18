@@ -13,10 +13,21 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EditIcon from '@mui/icons-material/Edit';
+import axios from "axios";
+import { useEffect } from "react";
 
 export default function ProfileForm (){
     
     const classes = useStyles()
+
+    const getUser = async() =>{
+        await axios.get('')
+
+    }
+
+    useEffect(() =>{
+
+    },[])
 
     return(
         <Container>

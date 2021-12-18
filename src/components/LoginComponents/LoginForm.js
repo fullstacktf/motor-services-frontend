@@ -8,7 +8,7 @@ import { Box, Checkbox, FormControlLabel, FormGroup, Grid, Typography } from '@m
 import Link from '@mui/material/Link';
 import LoginImage from '../../assets/images/login_image2.jpg'
 
-export default function LoginForm(){
+export default function LoginForm({onChange}){
 
   const handleSubmit = (e) => {
       e.preventDefault();
@@ -56,7 +56,7 @@ export default function LoginForm(){
               </Button>
               <Grid container xs={12}>
                   <Grid item xs>
-                    <Link variant="body2"  href="/register" variant="body2">
+                    <Link variant="body2"  href="/register" onClick={()=> onChange(true)}>
                       Registrate si aun no tienes cuenta
                     </Link>
                   </Grid>

@@ -5,14 +5,13 @@ import { Card, CardContent, CardMedia, Grid, Box, Typography, IconButton } from 
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 export default function CardVehicle({vehicle}){
 
-    const handleEdit = () => {
+    const handleDelete = async(vehicleID) => {
 
-    }
-
-    const handleDelete = () => {
+        await axios.delete(`http://localhost:3001/vehicles/${vehicleID}`)
 
     }
 
@@ -38,8 +37,8 @@ export default function CardVehicle({vehicle}){
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <IconButton onClick={handleEdit}><Link to={"/vehicle/edit/"+vehicle.plate_number}></Link><EditIcon/></IconButton>
-                        <IconButton onClick={handleDelete}><DeleteIcon/></IconButton>
+                        <IconButton><Link to={"/vehicle/edit/"+vehicle.plate_number}><EditIcon/></Link></IconButton>
+                        <IconButton onClick={()=>{handleDelete(vehicle.plate_number)}}><DeleteIcon/></IconButton>
                     </CardActions>
                 </Card>
             </Box>
