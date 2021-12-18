@@ -48,6 +48,9 @@ import Settings from '../views/Settings';
 import Notifications from '../views/Notifications';
 import Appointment from '../views/Appointments';
 import AppointmentForm from '../views/AppointmentForm';
+import AppointmentsFuture from '../views/AppointmentsFuture.js';
+import AppointmentsPresent from '../views/AppointmentsPresent.js';
+import AppointmentsPast from '../views/AppointmentsPast.js';
 import VehicleForm from '../views/VehicleForm';
 import ScheduleZoneForm from './ProfileComponents/ScheduleZoneForm';
 import Service from './ServiceComponents/Service';
@@ -275,9 +278,6 @@ export default function AppBarResponsive({userState,onChange}){
                                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                                 transformOrigin={{ vertical: "top", horizontal: "center" }}>
                                     <MenuItem variant="h7" component={Link} to="/appointments/appointmentForm" onClick={handleClose2}><Typography variant="h7">Solicitar Cita</Typography></MenuItem>
-                                    <MenuItem variant="h7" component={Link} to="/appointments" onClick={handleClose2}><Typography variant="h7">Citas en Curso</Typography></MenuItem>
-                                    <MenuItem variant="h7" component={Link} to="/appointments" onClick={handleClose2}><Typography variant="h7">Citas Anteriores</Typography></MenuItem>
-                                    <MenuItem variant="h7" component={Link} to="/appointments" onClick={handleClose2}><Typography variant="h7">Proximas Citas</Typography></MenuItem>
                                 </Menu>
                             </Typography>
                             <Typography variant="h7">
@@ -343,6 +343,12 @@ export default function AppBarResponsive({userState,onChange}){
               <Route path="/notifications" element={<Notifications/>}>
               </Route>
               <Route path="/appointments" element={<Appointment/>}>
+              </Route>
+              <Route path="/appointmentsPresent" element={<AppointmentsPresent/>}>
+              </Route>
+              <Route path="/appointmentsPast" element={<AppointmentsPast/>}>
+              </Route>
+              <Route path="/appointmentsFuture" element={<AppointmentsFuture/>}>
               </Route>
               <Route path="/appointments/appointmentForm" element={<AppointmentForm/>}>
               </Route>

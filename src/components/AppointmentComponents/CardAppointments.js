@@ -40,28 +40,25 @@ export default function CardAppointment({appointment}){
     };
 
     return(
-
-      <Grid item xs={4}>
-        <Item>
-          <Card sx={{ maxWidth: 345 }}>
+      <Grid item >
+          <Card sx={{ maxWidth: 345 }} style={{margin:'5px'}}>
             <CardHeader
               action={
                 <IconButton aria-label="settings">
                   <MoreVertIcon />
                 </IconButton>
               }
-              title="Cita"
-              subheader={appointment.service_type}
+              title={appointment.service_type}
+              subheader={`${appointment.brand} con matrícula ${appointment.id_vehicle}`}
               />
             <CardContent>
               <Typography variant="body2" color="text.secondary">
                 Fecha de la cita: {appointment.pick_up_date.split("T")[0]}<br/>
                 Hora de la cita: {appointment.pick_up_time} <br/>
-                Cita del vehículo {appointment.brand} {appointment.model} con matrícula {appointment.id_vehicle}
-
+                Estado de la cita: {appointment.appointment_status}<br/>
+                Petición de la cita: {appointment.appointment_request}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -81,16 +78,11 @@ export default function CardAppointment({appointment}){
                     Su picker será: {appointment.first_name} <br/>
                     Lugar de recogida: {appointment.pick_up_city} <br/>
                     Lugar de entrega: {appointment.delivery_city} <br/>
-                    Descripción del servicio: {appointment.owner_notes}
+                    Notas del usuario: {appointment.owner_notes}
                 </Typography>
               </CardContent>
             </Collapse>
           </Card>
-        </Item>
       </Grid>
-          
-
-
-
     )
 }

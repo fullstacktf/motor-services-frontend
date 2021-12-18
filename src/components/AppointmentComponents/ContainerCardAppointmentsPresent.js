@@ -18,14 +18,14 @@ export default function AppointmentContainer(appointmentFilter) {
     }, [])
 
     return (
-        
+
 
 
         <Grid container xs={12}>
             {
-                !appointments.length ? <h1>No hay citas</h1> : appointments.map((appointment) => {
-                    return <CardAppointment appointment={appointment}></CardAppointment>
-                })
+                !appointments.length ? <h1>No hay citas</h1> : appointments
+                    .filter(appointment => appointment.appointment_status !== 'No recogido' && appointment.appointment_status !== 'Entregado' )
+                    .map((appointment) => <CardAppointment appointment={appointment}></CardAppointment>)
             }
         </Grid>
     )
