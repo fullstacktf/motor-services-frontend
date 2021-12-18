@@ -1,8 +1,5 @@
 import {React, useState} from 'react';
-import {TextField,Box,FormLabel,Button} from '@mui/material/'
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import {TextField,Box,FormLabel,Button, MenuItem,Select} from '@mui/material/'
 
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -25,127 +22,99 @@ import RegisterImage from '../../assets/images/register_image.jpg'
 
 import '../../styles/RegisterForm.css'
 import { Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import Link from '@mui/material/Link';
+import axios from 'axios';
+import DatePicker from '@mui/lab/DatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { format } from 'date-fns';
+import cities from  '../../utils/data/cities.json'
 
 export default function RegisterForm(){
-    const [date, setDate] = useState("")
-    const [showPassword, setShowPassword] = useState(false)
-    const [password, setPassword] = useState("")
 
-    const handleClickShowPassword = () =>{
+    const [date, setDate] = useState(new Date());
+    const [dateFormat, setDateFormat] = useState(new Date());
+    const [idRol, setIdRol] = useState (1)
+    const [city, setCity] = useState(cities[0])
+  
+    const [user, setUser] = useState({
+        DNI: 0,
+        id_rol: 0,
+        password_key: "",
+        email: "",
+        city: "",
+        first_name: "",
+        last_name: "",
+        phone_number: 0,
+        birth_date: "",
+        profile_image: ""
+    })
 
-        if (showPassword == false) {
-            setShowPassword(true)
-        }
-        setShowPassword(false)
+    let handleChange = (e) => {
+        let name = e.target.name
+        let value = e.target.value
+
+        user[name] = value
+        // console.log('====================================');
+        // console.log(name,'Nombre',user[name],'Valor' ,value);
+        // console.log('====================================');
+        if(name === "city"){setCity(user[name])}
+        user["birth_date"] = dateFormat
+        user["profile_image"]= 'https://randomuser.me/api/portraits/men/11.jpg'
+        setUser(user)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
 
+    const formatDate = (date) => {
+        var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        setDateFormat([year, month, day].join('-').toString())
+        console.log(dateFormat)
+    }
+
+    const sendUser = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:3001/users/',user)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+        setUser({
+            DNI: 0,
+            id_rol: 0,
+            password_key: "",
+            email: "",
+            city: "",
+            first_name: "",
+            last_name: "",
+            phone_number: 0,
+            birth_date: "",
+            profile_image: ""
+        })
     }
 
     return(
-            // <Box className="container">
-
-            //     <FormLabel>Nombre</FormLabel><br></br>
-            //     <TextField label="Nombre" variant="outlined"></TextField>
-
-            //     <FormLabel>Apellidos</FormLabel><br></br>
-            //     <TextField label="Apellidos" variant="outlined"></TextField>
-            
-            //     <FormLabel>Dni</FormLabel><br></br>
-            //     <TextField label="Dni" variant="outlined"></TextField>
-
-            //     <FormLabel>Email</FormLabel><br></br>
-            //     <TextField type="email" label="Email" variant="outlined"></TextField>
-
-            //     <FormLabel>Password</FormLabel><br></br>
-            //     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-            //     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-            //     <OutlinedInput
-            //         id="outlined-adornment-password"
-            //         type={showPassword ? 'text' : 'password'}
-            //         value={password}
-            //         endAdornment={
-            //         <InputAdornment position="end">
-            //             <IconButton
-            //             aria-label="toggle password visibility"
-            //             onClick={handleClickShowPassword}
-            //             edge="end"
-            //             >
-            //             {showPassword ? <VisibilityOff /> : <Visibility />}
-            //             </IconButton>
-            //         </InputAdornment>
-            //         }
-            //         label="Password"
-            //     />
-            //     </FormControl>
-
-            //     <FormLabel>Fecha de Nacimiento</FormLabel><br></br>
-
-            //     <LocalizationProvider dateAdapter={AdapterDateFns}>
-
-            //     <DesktopDatePicker
-            //     label="Fecha de Nacimiento"
-            //     value={date}
-            //     minDate={new Date('1960-01-01')}
-            //     onChange={(newValue) => {
-            //         setDate(newValue);
-            //     }}
-            //     renderInput={(params) => <TextField {...params} />}
-            //     />
-
-            //     </LocalizationProvider>
-
-            //     <FormLabel>Telefono</FormLabel>
-            //     <TextField type="number">Telefono</TextField>
-
-            //     <FormLabel>Localizacion</FormLabel>
-            //     <TextField type="text" variant="outlined">
-            //         <LocationOnIcon/>
-            //     </TextField>
-
-            //     <br></br>
-            //     <label htmlFor="upload-photo">
-            //     <input
-            //         style={{ display: 'none' }}
-            //         id="upload-photo"
-            //         name="upload-photo"
-            //         type="file"
-            //     />
-
-            //     <FormLabel>Subir Imagen Perfil:</FormLabel>
-            //     <Button color="secondary" variant="contained" component="span">
-            //        <AddIcon /> Upload button
-            //     </Button>
-            //     </label>
-
-            //     <FormGroup>
-            //         <FormControlLabel control={<Checkbox/>} label="He leido y acepto los terminos y condiciones y la politica de privacidad"></FormControlLabel>
-            //     </FormGroup>
-
-
-            //     <br></br>
-            //     <Button variant="contained">Registrarse</Button>
-            // </Box>
             <Grid container xs={12}  justifyContent="center" style={{height:'100vh' ,backgroundImage: `url(${RegisterImage})`, display: 'flex', alignItems: 'center', alignContent: 'center'}}>
-                 <CssBaseline />
-                <Grid item className="patata"  maxWidth="xs" sm={6} style={{backdropFilter:'blur(5px)' , backgroundColor:'#f2f3f55e', borderRadius: '7px', margin:'1.5rem'}}>
+                <Grid item maxWidth="xs" sm={6} style={{backdropFilter:'blur(5px)' , backgroundColor:'#f2f3f594', borderRadius: '7px', margin:'1.5rem',marginTop: '1.5rem'}}>
                 <Grid container justifyContent="center" xs={12}>
                     <img src={IconRegister} width="40%"/>
                 </Grid>
-                <Box component="form" onSubmit={handleSubmit} style={{ margin:'2rem'}}>
+                <form id="form" onSubmit={sendUser}>
+                <Box style={{ margin:'2rem'}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 autoComplete="given-name"
-                                name="firstName"
+                                name="first_name"
                                 required
                                 fullWidth
                                 id="firstName"
                                 label="Nombre"
                                 autoFocus
+                                onChange={handleChange}
                                 />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -154,22 +123,91 @@ export default function RegisterForm(){
                                 fullWidth
                                 id="lastName"
                                 label="Apellidos"
-                                name="lastName"
+                                name="last_name"
                                 autoComplete="family-name"
+                                onChange={handleChange}
                                 />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 required
                                 fullWidth
-                                id="lastName"
+                                id="DNI"
                                 label="DNI"
-                                name="lastName"
+                                name="DNI"
                                 autoComplete="family-name"
+                                onChange={handleChange}
                                 />
                         </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                            required
+                            id="outlined-required"
+                            label="Email"
+                            name="email"
+                            type="email"
+                            fullWidth
+                            onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                            required
+                            id="outlined-required"
+                            label="Telefono"
+                            name="phone_number"
+                            type="phone"
+                            fullWidth
+                            onChange={handleChange}
+                            />
+                        </Grid>
                         <Grid item xs={12}>
-                            {/* DATE PICKER  */}
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
+                            disableFuture
+                            name="birth_date"
+                            label="Fecha de Nacimiento"
+                            openTo="year"
+                            views={['year', 'month', 'day']}
+                            value={date}
+                            onChange={(newValue) => {
+                                setDate(newValue);
+                                formatDate(newValue); 
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                            />
+                        </LocalizationProvider>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FormControl fullWidth>
+                                <InputLabel>Tipo de Usuario</InputLabel>
+                                <Select
+                                    label="Tipo de Usuario"
+                                    name="id_rol"
+                                    value={idRol}
+                                    onChange={handleChange}
+                                    defaultValue={1}>
+                                    <MenuItem value="1">Cliente</MenuItem>
+                                    <MenuItem value="2">Picker</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FormControl fullWidth>
+                                <InputLabel>Ciudad</InputLabel>
+                                <Select
+                                    required
+                                    label="Ciudad"
+                                    name="city"
+                                    value={city}
+                                    onChange={handleChange}>
+                                        {
+                                            cities.map((element)=>(
+                                                <MenuItem value={element.city}>{element.city}</MenuItem>
+                                            ))
+                                        }
+                                </Select>
+                            </FormControl>
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -177,7 +215,8 @@ export default function RegisterForm(){
                             fullWidth
                             type="password"
                             label="Contraseña"
-                            name="password"
+                            name="password_key"
+                            onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -186,7 +225,7 @@ export default function RegisterForm(){
                             fullWidth
                             type="password"
                             label="Repetir Contraseña"
-                            name="password"
+                            // onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -201,11 +240,13 @@ export default function RegisterForm(){
                                 Registrarse
                             </Button>
                         </Grid>
+                       
                         <Grid item>
-                            {/* <Link to="/">¿Tienes una cuenta? Inicia Sesión</Link> */}
+                            <Link variant="body2" href="/">¿Tienes una cuenta? Inicia Sesión</Link>
                         </Grid>
                     </Grid>
                 </Box>
+                </form>
             </Grid>
         </Grid>
     )

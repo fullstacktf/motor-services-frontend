@@ -9,7 +9,7 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+    Link,
   } from 'react-router-dom';
 
 import Profile from '../views/Profile'
@@ -55,6 +55,9 @@ import IconLogo from './IconLogo';
 import EditProfile from '../views/EditProfile';
 import ProfileAvatar from './ProfileComponents/ProfileAvatar';
 import Register from '../views/Register';
+import EditVehicle from '../views/EditVehicle';
+import AddVehicle from '../views/AddVehicle';
+import Error404 from '../views/Error404.JS';
 
 const DRAWER_WIDTH = 240
 const useStyles = makeStyles((theme)=>({
@@ -321,19 +324,19 @@ export default function AppBarResponsive({userState,onChange}){
             <main className={classes.content}>
           <div className={classes.toolbar} />
           <Routes>
-              <Route path="/" element={<Main/>}>
+              <Route exact path="/" element={<Main/>}>
               </Route>
               {/* <Route path="/register" element={<Register/>}>
               </Route> */}
-              <Route path="/profile" element={<Profile/>}>
+              <Route  path="/profile" element={<Profile/>}>
               </Route>
-              <Route path="/editProfile" element={<EditProfile/>}>
+              <Route  path="/editProfile" element={<EditProfile/>}>
               </Route>
-              <Route path="/vehicles" element={<Vehicles/>}>
+              <Route  path="/vehicles" element={<Vehicles/>}>
               </Route>
-              <Route path="/vehicles/add" element={<VehicleForm/>}>
+              <Route  path="/vehicles/add" element={<AddVehicle/>}>
               </Route>
-              <Route path="/vehicle/edit/:idVehicle" element={<VehicleForm/>}>
+              <Route path="/vehicle/edit/:idVehicle" element={<EditVehicle/>}>
               </Route>
               <Route path="/notifications" element={<Notifications/>}>
               </Route>
@@ -349,6 +352,11 @@ export default function AppBarResponsive({userState,onChange}){
               </Route>
               <Route path="/user/schedule" element={<ScheduleZoneForm/>}>
               </Route>
+              <Route path="*" element={<Error404/>}>
+              </Route>
+              {/* <Route path="*">
+                <Redirect to="/404" />
+              </Route> */}
           </Routes>
 
         </main>

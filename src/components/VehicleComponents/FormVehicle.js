@@ -5,6 +5,7 @@ import { Container, TextField, Button, Card, FormControl, FormLabel, Grid, Input
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from "react";
 import vehiclesBrands from '../../utils/data/vehiclesBrands.json'
+import { useParams } from 'react-router-dom';
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -12,30 +13,34 @@ import axios from 'axios'
 
 //Styles
 import {useStyles} from '../../styles/FormsStyle'
+import ButtonSend from "./ButtonSendVehicle";
 
-export default function FormVehicle() {
+export default function FormVehicle({edit, vehicleEdit}) {
 
+    const [title, setTitle] = useState("")
+    const [iconButton, setIconButton] = useState()
     const [brands, setBrandsArray] = useState([])
     const [brandForm, setBrandForm] = useState('')
-    
+
     const [models, setModels] = useState([])
     const [model, setModel] = useState('')
 
     const [fuel, setFuel] = useState('')
-
     const classes = useStyles()
 
+
     const [vehicle, setVehicle] = useState({
-        plate_number: "",
-        id_owner: 0,
         brand: "",
-        model: "",
-        powered: 0,
-        kilometers: 0,
         fuel: "",
+        id_owner: 0,
+        kilometers: 0,
+        model: "",
+        plate_number: "",
+        powered: 0,
         vehicle_description: "",
-        vehicle_image: ""
+        vehicle_image: "",
     })
+    // const [vehicleEdit, setVehicleEdit] = useState([])
 
     let handleChange = (e) => {
 
@@ -45,63 +50,41 @@ export default function FormVehicle() {
         vehicle["id_owner"] = 12345671
         name === "brand"  ?   setBrandForm(vehicle[name]) :  name === "model" ? setModel(vehicle[name]) : setFuel(vehicle[name])
         setVehicle(vehicle)
-        console.log(vehicle);
-        getModels()
-        
     }
 
     const sendVehicle = (e) => {
         e.preventDefault();
-
         axios.post('http://localhost:3001/vehicles/', vehicle)
             .then(res=>console.log(res.data))
             .catch(err=>console.log(err))
-        console.log(vehicle);
-    } 
-
-    // const handleChange = (e) => {
-
-    //     setBrandForm(e.target.value)
-    //     console.log('====================================');
-    //     console.log(e.target.value);
-    //     console.log('====================================');
-    //     getModels(e.target.value)
-
-    // }
-
-    const getModels = async(idBrand) =>{
-
-        await axios.get(`https://ms-mt--api-web.spain.advgo.net/vehicle-specs/v1/models?section1Id=2500&makeId=39&includeManual=true`,{
-            headers: {
-                "connection": "keep-alive",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36",
-                // "origin": "https://www.coches.net",
-                'access-control-allow-credentials': true,
-                'access-control-allow-origin':'https://www.coches.net',
-                'x-adevinta-channel': 'web-desktop',
-                'x-schibsted-tenant': 'coches'
-            }
-          })
-            .then(res=>setModels(res))
-            .catch(err=>console.log(err))
-            console.log(models);
+        setVehicle()
     }
+
 
     const getBrands = async () => {
         setBrandsArray(vehiclesBrands.items)
     }
 
     useEffect(() => {
+        console.log("Edit",vehicleEdit);
+        if (edit){
+            setTitle("Editar Vehiculo")
+            // setVehicleUpdate(vehicleEdit)
+            setIconButton(true)
+            setVehicle(vehicleEdit)
+
+        }else{
+            setTitle("Añadir Vehiculo")
+        }
         getBrands()
     }, [])
-
 
 
     return (
         <Container spacing={2} xs={12}>
             <form id="form" onSubmit={sendVehicle}>
             <div className={classes.root}>
-            <h1>Añadir vehículo</h1>
+            <h1>{title}</h1>
             <Grid container md={6} xs={12}>
                 <FormControl fullWidth>
                     <InputLabel>Marca</InputLabel>
@@ -109,7 +92,8 @@ export default function FormVehicle() {
                         label="Marca"
                         name="brand"
                         value={brandForm}
-                        onChange={handleChange}>
+                        onChange={handleChange}
+                        defaultValue={vehicle.brand}>
                         {
                             brands.map((element) => (
                                 <MenuItem value={element.label}>{element.label}</MenuItem>
@@ -119,60 +103,57 @@ export default function FormVehicle() {
                 </FormControl>
                 </Grid>
                 <Grid container md={6} xs={12}>
-                <FormControl fullWidth>
-                    <InputLabel>Modelo</InputLabel>
-                    <Select
-                        label="Modelo"
-                        name="model"
-                        value={model}
-                        onChange={handleChange}>
-                        <MenuItem value="Tesla Model S">Tesla Model S</MenuItem>
-                        <MenuItem value="Ford Fiesta">Ford Fiesta</MenuItem>
-                        <MenuItem value="Ford Focus">Ford Focus</MenuItem>
-                    </Select>
-                </FormControl>
+
+                <TextField
+                    label="Modelo"
+                    name="model"
+                    onChange={handleChange}
+                    defaultValue={vehicle.model}
+                    margin="dense"
+                    id="plate_number"
+                    variant="outlined"
+                    type="text"
+                    fullWidth
+                />
                 </Grid>
                 <Grid container md={6} xs={12}>
-                    <Grid item sm={6} xs={12}>
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Año"
-                            multiline
-                            name="age"
-                            maxRows={4}
-                            onChange={handleChange}
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <TextField
-                            id="outlined-multiline-flexible"
+                    <Grid item sm={12} xs={12}>
+                    <TextField
                             label="Matricula"
                             name="plate_number"
-                            multiline
-                            maxRows={4}
                             onChange={handleChange}
+                            defaultValue={vehicle.plate_number}
+                            margin="dense"
+                            id="plate_number"
+                            variant="outlined"
+                            type="text"
+                            onChange={handleChange}
+                            fullWidth
                         />
-                    </Grid> 
+                        {vehicle.fuel}
+                    </Grid>
                 </Grid>
                 <Grid container xs={12} md={6}>
-                    <Grid item sm={6} xs={12}>
+                    <Grid item sm={4} xs={12}>
                         <TextField
                             id="outlined-multiline-flexible"
                             label="Potencia"
                             name="powered"
-                            multiline
-                            maxRows={4}
                             onChange={handleChange}
+                            defaultValue={vehicle.powered}
+                            fullWidth
                         />
                     </Grid>
-                    <Grid item sm={6} xs={12}>
+                    <Grid item sm={4} xs={12}>
                         <TextField
+                            name="kilometers"
+                            onChange={handleChange}
+                            defaultValue={vehicle.kilometers}
                             id="outlined-multiline-flexible"
                             label="Kilómetros"
                             name="kilometers"
-                            multiline
-                            maxRows={4}
                             onChange={handleChange}
+                            fullWidth
                         />
                     </Grid>
                 </Grid>
@@ -183,7 +164,8 @@ export default function FormVehicle() {
                             label="Combustible"
                             name="fuel"
                             value={fuel}
-                            onChange={handleChange}>
+                            onChange={handleChange}
+                            defaultValue={vehicle.fuel}>
                             <MenuItem value="Gasolina">Gasolina</MenuItem>
                             <MenuItem value="Diesel">Diésel</MenuItem>
                             <MenuItem value="Electrico">Eléctrico</MenuItem>
@@ -195,6 +177,7 @@ export default function FormVehicle() {
                     <TextField
                         mt={2}
                         className={classes.formElement}
+                        defaultValue={vehicle.vehicle_description}
                         name="vehicle_description"
                         onChange={handleChange}
                         id="outlined-multiline-static"
@@ -235,8 +218,8 @@ export default function FormVehicle() {
                         bgcolor: 'background.paper',
                     }}
                 >
-                    <Button type="submit" variant="contained">Añadir</Button>
-                    <Button variant="contained">Cancelar</Button>
+                    {/* <Button type="submit" variant="contained">Añadir</Button> */}
+                    <ButtonSend text={title} icon={iconButton}></ButtonSend>
                 </Box>
             </div>
             </form>
