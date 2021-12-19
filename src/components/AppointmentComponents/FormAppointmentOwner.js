@@ -103,40 +103,39 @@ export default function AppointmentFormOwner() {
     const handleDate = (event) => {
         setPicker(event.target.value);
     };
-
     return (
         <Grid className={classes.root} container spacing={2} xs={12}>
             <Box m={2} sm={4} xs={12}>
                 <h1>Solicitar cita</h1>
                 <Box mb={1}>
-                <FormControl fullWidth>
-                    <InputLabel>Picker</InputLabel>
-                    <Select
+                    <TextField fullWidth
+                        select
                         label="Picker"
                         value={picker}
-                        onChange={handlePicker}>
+                        onChange={handlePicker}
+                    >
                         {pickers.map((option) => (
-                            <option key={option.value} value={option.value}>
+                            <MenuItem key={option.value} value={option.value}>
                                 {option.label}
-                            </option>
+                            </MenuItem>
                         ))}
-                    </Select>
-                </FormControl>
+                    </TextField>
                 </Box>
                 <Box mb={1}>
-                <FormControl fullWidth>
-                    <InputLabel>Vehículo</InputLabel>
-                    <Select
-                        label="Vehículo"
-                        value={vehicle}
-                        onChange={handleVehicle}>
-                        {vehicles.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </Select>
-                </FormControl>
+                    <FormControl fullWidth>
+                        <TextField fullWidth
+                            select
+                            label="Vehículo"
+                            value={vehicle}
+                            onChange={handleVehicle}
+                        >
+                            {vehicles.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </FormControl>
                 </Box>
                 <Grid container xs={12}>
                     <Grid item sm={6} xs={12} mb={1}>
@@ -162,37 +161,39 @@ export default function AppointmentFormOwner() {
                     </Grid>
                 </Grid>
                 <Box mb={1}>
-                <TextField
-                    id="outlined-multiline-flexible"
-                    label="Sitio de entrega"
-                    multiline
-                    maxRows={4}
-                    fullWidth
-                /></Box>
+                    <TextField
+                        id="outlined-multiline-flexible"
+                        label="Sitio de entrega"
+                        multiline
+                        maxRows={4}
+                        fullWidth
+                    /></Box>
                 <Box mb={1}>
-                <FormControl fullWidth>
-                    <InputLabel>Servicio</InputLabel>
-                    <Select
-                        label="Servicio"
-                        value={service}
-                        onChange={handleService}>
-                        {services.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </Select>
-                </FormControl></Box>
+                    <FormControl fullWidth>
+                        <TextField fullWidth
+                            select
+                            label="Servicio"
+                            value={service}
+                            onChange={handleService}
+                        >
+                            {services.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </FormControl>
+                </Box>
                 <Box mb={1}>
-                <TextField
-                    mt={2}
-                    className={classes.formElement}
-                    id="outlined-multiline-static"
-                    label="Notas del usuario"
-                    multiline
-                    rows={4}
-                    fullWidth
-                /></Box>
+                    <TextField
+                        mt={2}
+                        className={classes.formElement}
+                        id="outlined-multiline-static"
+                        label="Notas del usuario"
+                        multiline
+                        rows={4}
+                        fullWidth
+                    /></Box>
                 <Box
                     sx={{
                         display: 'flex',
@@ -204,6 +205,6 @@ export default function AppointmentFormOwner() {
                     <Button variant="contained">Cancelar</Button>
                 </Box>
             </Box>
-        </Grid>
+        </Grid >
     )
 }
