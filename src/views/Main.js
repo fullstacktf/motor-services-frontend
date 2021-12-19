@@ -16,8 +16,8 @@ export default function Main() {
             <h1>Mis Servicios</h1>
             <ContainerCardServices></ContainerCardServices>
             <h1>Mis Vehículos</h1>
-            <ContainerCards></ContainerCards></div>
-              <MapComponent></MapComponent>
-        
+            <ContainerCards></ContainerCards>
+            <MapComponent></MapComponent></div>
+
     )
 }
