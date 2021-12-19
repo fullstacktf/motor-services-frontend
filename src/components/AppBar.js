@@ -366,7 +366,7 @@ export default function AppBarResponsive({userState,onChange}){
               </Route>
               <Route path="/services" element={<Services/>}>
               </Route>
-              <Route path="/services/serviceID" element={<Service/>}>
+              <Route path="/services/:idService" element={<Service/>}>
               </Route>
               <Route path="/settings" element={<Settings/>}>
               </Route>
