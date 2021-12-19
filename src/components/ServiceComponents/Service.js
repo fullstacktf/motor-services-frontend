@@ -5,6 +5,7 @@ import { Grid } from "@mui/material";
 import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Button from '@mui/material/Button';
 
 export default function Service(props) {
     const { idService } = useParams();
@@ -27,11 +28,11 @@ export default function Service(props) {
                 {service.map(service => <h1>{service.service_type}</h1>)}
             </Grid>
             <Grid item>
-            {service.map(service => <h4>{service.service_description}</h4>)}
+            {service.map(service => <div style={{textAlign:'justify'}}>{service.service_description}</div>)}
 
             </Grid>
             <Grid item>
-                <ServiceButton></ServiceButton>
+            <Button variant="outlined">Solicitar Servicio</Button>
             </Grid>
         </Grid>
     )
