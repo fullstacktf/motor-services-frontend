@@ -1,8 +1,9 @@
+import MapComponent from "../components/MapComponent";
 
 export default function Main(){
 
 
     return(
-        <h1>Main</h1>
+        <MapComponent></MapComponent>
     )
 }

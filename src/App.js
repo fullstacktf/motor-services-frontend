@@ -36,7 +36,7 @@ function App() {
   // const registerMode = true;
 
   useEffect(() => {
-    setUserLogin(false);
+    setUserLogin(true);
     setUserRegister(true)
   },[])
 
