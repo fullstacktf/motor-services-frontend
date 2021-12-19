@@ -74,7 +74,7 @@ import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
-export default function MapComponent(){
+export default function MapComponent({dataMap, getData}){
 
     const MAPBOX_TOKEN = 'pk.eyJ1IjoicmljbWliZXI5NiIsImEiOiJja3g0ajM3d3YyYW9kMnhsYXN1djhvcHNmIn0.w5WWlA5Q2D5f6zYKDbfSYA';
     const mapContainer = useRef(null);
@@ -95,7 +95,8 @@ export default function MapComponent(){
         (newViewport) => {
           const geocoderDefaultOverrides = { transitionDuration: 1000 };
     
-          console.log(newViewport)
+        //   console.log(newViewport)
+          getData(newViewport)
           return handleViewportChange({
             ...newViewport,
             ...geocoderDefaultOverrides
@@ -150,7 +151,7 @@ export default function MapComponent(){
     // }, [])
 
     return(
-        <div style={{ height: "100vh" }}>
+        <div style={{ height: "50vh" }}>
         <MapGL
           ref={mapRef}
           {...viewport}
