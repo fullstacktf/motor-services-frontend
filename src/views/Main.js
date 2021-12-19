@@ -2,7 +2,6 @@
 import ContainerCardServices from "../components/ServiceComponents/ContainerCardServices";
 import ContainerCards from "../components/VehicleComponents/ContainerCards";
 import ContainerCardAppointmentsPresent from "../components/AppointmentComponents/ContainerCardAppointmentsPresent";
-import MapComponent from "../components/MapComponent";
 
 export default function Main() {
 
@@ -16,8 +15,7 @@ export default function Main() {
             <h1>Mis Servicios</h1>
             <ContainerCardServices></ContainerCardServices>
             <h1>Mis Vehículos</h1>
-            <ContainerCards></ContainerCards>
-            <MapComponent></MapComponent></div>
+            <ContainerCards></ContainerCards></div>
 
     )
 }

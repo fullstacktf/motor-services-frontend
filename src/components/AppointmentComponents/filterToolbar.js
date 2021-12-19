@@ -73,7 +73,6 @@ export default function FilterList() {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <StatusFilter></StatusFilter>
         </Collapse>
-
       </List>
     </Paper>
   );

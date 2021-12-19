@@ -160,7 +160,7 @@ export default function AppBarResponsive({userState,onChange}){
     }
     const getUser = async() =>{
 
-        await axios.get('http://localhost:3001/users/11223333')
+        await axios.get('http://localhost:3001/users/12345671')
             .then(res=> setUser(res.data[0]))
             .catch(err=> console.log(err))
     }
@@ -220,7 +220,7 @@ export default function AppBarResponsive({userState,onChange}){
             <div className={classes.toolbar}>
                 <Divider/>
                 <Grid item xs={12} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center', marginTop:'1rem'}}>
-                    <ProfileAvatar imgUrl={user.profile_image} width={50} height={50}/>
+                    <ProfileAvatar imgUrl={""} width={50} height={50}/>
                     <Typography variant="h7">{user.first_name != "" ? user.first_name : "Username" }</Typography>
                 </Grid>
                 
