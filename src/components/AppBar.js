@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useEffect,useState} from 'react'
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { AppBar, Box, Button, CssBaseline, Divider, Drawer, Grid, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, MenuItem, Toolbar, Typography } from '@material-ui/core';
@@ -61,6 +61,7 @@ import Register from '../views/Register';
 import EditVehicle from '../views/EditVehicle';
 import AddVehicle from '../views/AddVehicle';
 import Error404 from '../views/Error404.JS';
+import axios from 'axios';
 
 const DRAWER_WIDTH = 240
 const useStyles = makeStyles((theme)=>({
@@ -132,6 +133,7 @@ export default function AppBarResponsive({userState,onChange}){
     const classes = useStyles();
     const theme = useTheme();
 
+    const [user,setUser] = useState([])
     const [mobileOpen, setMobileOpen] = useState(false);
     const container = window !== undefined ? ()=>window.document.body : undefined
     const [anchor,setAnchor] = useState(null)
@@ -156,6 +158,16 @@ export default function AppBarResponsive({userState,onChange}){
     const handleClose2 = () =>{
       setAnchor2(null)
     }
+    const getUser = async() =>{
+
+        await axios.get('http://localhost:3001/users/11223333')
+            .then(res=> setUser(res.data[0]))
+            .catch(err=> console.log(err))
+    }
+
+    useEffect(() => {
+        getUser()
+    }, [])
 
     // const handleLogout = () => {
     //     console.log("click");
@@ -207,9 +219,9 @@ export default function AppBarResponsive({userState,onChange}){
         <div>
             <div className={classes.toolbar}>
                 <Divider/>
-                <Grid item xs={12}>
-                    <ProfileAvatar/>
-                    <Typography variant="h7">Username</Typography>
+                <Grid item xs={12} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center', marginTop:'1rem'}}>
+                    <ProfileAvatar imgUrl={user.profile_image} width={50} height={50}/>
+                    <Typography variant="h7">{user.first_name != "" ? user.first_name : "Username" }</Typography>
                 </Grid>
                 
                 <List>
@@ -330,7 +342,7 @@ export default function AppBarResponsive({userState,onChange}){
               </Route> */}
               <Route  path="/profile" element={<Profile/>}>
               </Route>
-              <Route  path="/editProfile" element={<EditProfile/>}>
+              <Route  path="/edit/:idProfile" element={<EditProfile/>}>
               </Route>
               <Route  path="/vehicles" element={<Vehicles/>}>
               </Route>

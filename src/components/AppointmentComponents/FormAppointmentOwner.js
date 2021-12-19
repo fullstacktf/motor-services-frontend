@@ -12,7 +12,9 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 //Styles
-import { useStyles } from '../../styles/VehicleFormStyle'
+import {useStyles} from '../../styles/VehicleFormStyle'
+import MapComponent from "../MapComponent";
+import ButtonSend from "../VehicleComponents/ButtonSendVehicle";
 
 const pickers = [
     {
@@ -73,16 +75,23 @@ const services = [
 
 export default function AppointmentFormOwner() {
 
-
     const classes = useStyles()
-
-
-
-
+    
     const [picker, setPicker] = React.useState('Picker 1');
     const handlePicker = (event) => {
         setPicker(event.target.value);
     };
+
+    const [dataMap, setDataMap] = useState()
+    const [latitude, setLatitude] = useState()
+    const [longitude, setLongitude] = useState()
+
+    const getDataMap = (dataMap) => {
+
+        setDataMap(dataMap);
+        setLatitude(dataMap.latitude)
+        setLongitude(dataMap.longitude);
+    }
 
     const [vehicle, setVehicle] = React.useState('Vehículo 1'); //<--- Esto hay que cambiarlo
     const handleVehicle = (event) => {
@@ -103,9 +112,11 @@ export default function AppointmentFormOwner() {
     const handleDate = (event) => {
         setPicker(event.target.value);
     };
+
+
     return (
         <Grid className={classes.root} container spacing={2} xs={12}>
-            <Box m={2} sm={4} xs={12}>
+            <Box m={2} sm={6} xs={12}>
                 <h1>Solicitar cita</h1>
                 <Box mb={1}>
                     <TextField fullWidth
@@ -160,6 +171,11 @@ export default function AppointmentFormOwner() {
                         </LocalizationProvider>
                     </Grid>
                 </Grid>
+                <Grid container xs={12}>
+                    <Grid item sm={12} xs={12} mb={1}>
+                        <MapComponent getData={getDataMap}></MapComponent>
+                    </Grid>
+                </Grid>
                 <Box mb={1}>
                     <TextField
                         id="outlined-multiline-flexible"
@@ -197,12 +213,10 @@ export default function AppointmentFormOwner() {
                 <Box
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
-                        bgcolor: 'background.paper',
+                        justifyContent: 'center',
                     }}
                 >
-                    <Button variant="contained">Aceptar</Button>
-                    <Button variant="contained">Cancelar</Button>
+                    <ButtonSend text="Añadir Cita"></ButtonSend>
                 </Box>
             </Box>
         </Grid >

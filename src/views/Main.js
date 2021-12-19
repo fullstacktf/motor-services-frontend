@@ -1,6 +1,9 @@
+
 import ContainerCardServices from "../components/ServiceComponents/ContainerCardServices";
 import ContainerCards from "../components/VehicleComponents/ContainerCards";
 import ContainerCardAppointmentsPresent from "../components/AppointmentComponents/ContainerCardAppointmentsPresent";
+import MapComponent from "../components/MapComponent";
+
 export default function Main() {
 
     const appointmentFilter = { //status!= no recogido && status != entregado
@@ -14,5 +17,7 @@ export default function Main() {
             <ContainerCardServices></ContainerCardServices>
             <h1>Mis Vehículos</h1>
             <ContainerCards></ContainerCards></div>
+              <MapComponent></MapComponent>
+        
     )
 }
