@@ -1,13 +1,13 @@
 import { Avatar } from "@mui/material";
 
 
-export default function ProfileAvatar({imgUrl}){
+export default function ProfileAvatar({imgUrl, width, height}){
 
     return(
         <Avatar 
             alt="Profile Avatar"
             src={imgUrl}
-            sx={{ width: 80, height: 80 }}
+            sx={{ width: width, height: height }}
         />
     )
 }
