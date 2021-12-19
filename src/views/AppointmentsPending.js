@@ -19,7 +19,6 @@ export default function AppointmentsPast() {
     return (
 
         <div>
-            <ContainerCardAppointment appointmentFilter={appointmentFilter}></ContainerCardAppointment>
-            <h1>Citas cuyo request es pendiente</h1></div>
+            <ContainerCardAppointment appointmentFilter={appointmentFilter}></ContainerCardAppointment></div>
     )
 }
