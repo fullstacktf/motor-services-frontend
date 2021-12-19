@@ -15,6 +15,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ButtonSend from "../VehicleComponents/ButtonSendVehicle";
 
 export default function ProfileForm (){
     
@@ -50,8 +51,7 @@ export default function ProfileForm (){
                         <EmailIcon/>
                         <Typography variant="h6">{user.email != "" ? user.email: "Mail"}</Typography>
                     </div>
-                    
-                    <Button variant="contained" component={Link} to="/editProfile"  startIcon={<EditIcon />}>Editar Perfil</Button>
+                    <ButtonSend text="Editar Perfil" icon={true} link={"/edit/"+user.DNI}></ButtonSend>
             </div>
         </Container>
     )
