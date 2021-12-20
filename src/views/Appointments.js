@@ -57,7 +57,7 @@ export default function Appointment() {
           <Tab label="Citas En Curso" {...a11yProps(0)} />
           <Tab label="Citas Pasadas" {...a11yProps(1)} />
           <Tab label="Citas Futuras" {...a11yProps(2)} />
-          <Tab label="Citas Pendientes" {...a11yProps(3)} style={{marginLeft:'600px'}}/>
+          <Tab label="Citas Pendientes" {...a11yProps(3)} style={{marginLeft:'500px'}}/>
           <Tab label="Citas Canceladas" {...a11yProps(3)}/>
         </Tabs>
       </Box>

@@ -8,10 +8,9 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 
 export default function CardVehicle({vehicle}){
-
     const handleDelete = async(vehicleID) => {
 
-        await axios.delete(`http://localhost:3001/vehicles/${vehicleID}`)
+        await axios.delete(`http://localhost:3001/vehicles/${vehicle.plate_number}`)
 
     }
 
@@ -22,7 +21,7 @@ export default function CardVehicle({vehicle}){
                 <Card>
                     <CardMedia
                     component="img"
-                    src={vehicle.vehicle_image}
+                    src={`./motor-services-backend/uploads/vehicles/${vehicle.plate_number}.jpg`}
                     alt="image of vehicle"
                     />
                     <CardContent>
