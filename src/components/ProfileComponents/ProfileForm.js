@@ -35,7 +35,7 @@ export default function ProfileForm (){
     return(
         <Container>
           <div className={classes.root}>
-                    <ProfileAvatar imgUrl={user.profile_image} width={150} height={150}></ProfileAvatar>
+                    <ProfileAvatar imgUrl={""} width={150} height={150}></ProfileAvatar>
                     <Typography variant="h3">{user.first_name != "" ? user.first_name : "Username" }</Typography>  
                     <div style={{display: 'flex'}}>
                         <LocationOnIcon/>

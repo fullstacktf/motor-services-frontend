@@ -222,7 +222,7 @@ export default function AppBarResponsive({userState,onChange}){
             <div className={classes.toolbar}>
                 <Divider/>
                 <Grid item xs={12} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center', marginTop:'1rem'}}>
-                    <ProfileAvatar imgUrl={user.profile_image} width={50} height={50}/>
+                    <ProfileAvatar imgUrl={""} width={50} height={50}/>
                     <Typography variant="h7">{user.first_name != "" ? user.first_name : "Username" }</Typography>
                 </Grid>
                 
@@ -365,7 +365,7 @@ export default function AppBarResponsive({userState,onChange}){
               </Route>
               <Route path="/services" element={<Services/>}>
               </Route>
-              <Route path="/services/serviceID" element={<Service/>}>
+              <Route path="/services/:idService" element={<Service/>}>
               </Route>
               <Route path="/user/schedule" element={<ScheduleZoneForm/>}>
               </Route>

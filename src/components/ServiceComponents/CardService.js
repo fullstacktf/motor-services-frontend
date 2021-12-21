@@ -1,6 +1,6 @@
 import { Card, Grid } from "@material-ui/core";
 import { CardContent, CardActionArea, Typography } from "@mui/material";
-import {handleClick} from 'react'
+import { handleClick } from 'react'
 import { Box } from "@mui/system";
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,9 @@ export default function CardService({ service }) {
     return (
         <Grid item sm={4}>
             <Box mb={3} mr={6}>
-                <Card style={{ textAlign: 'center', width: '100%', margin: 'auto', borderRadius: '20px' }} component={Link} to='/services/serviceID'>
+                <Card style={{ textAlign: 'center', width: '100%', margin: 'auto', borderRadius: '20px' }} component={Link} to={{
+                    pathname: `/services/${service.id}`,
+                }}>
                     <CardActionArea href="" style={{ borderRadius: '3px', border: '1px solid #03045E' }}>
                         <div style={{ backgroundColor: '#023E8A', color: 'white', fontSize: '15px' }}>
                             <span>

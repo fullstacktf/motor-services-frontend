@@ -22,7 +22,6 @@ import VehicleForm from './views/VehicleForm';
 import Profile from './views/Profile'
 import Register from './views/Register';
 import Footer from './components/Footer';
-import DataFetching from './components/DataFetching'
 
 function App() {
   
