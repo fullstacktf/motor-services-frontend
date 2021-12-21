@@ -76,9 +76,6 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 ## 🖥️ Tech Stack
 
 **Client:** React, Material UI
@@ -97,34 +94,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 https://pickauto.es/
 
-
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
-
-
 ## Screenshots
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
@@ -133,6 +102,3 @@ Takes two numbers and returns the sum.
 ## Features
 
 - Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
