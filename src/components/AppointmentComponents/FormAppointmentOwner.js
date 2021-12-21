@@ -10,77 +10,101 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DateTimePicker from '@mui/lab/DateTimePicker';
+import TimePicker from '@mui/lab/TimePicker';
+
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import Stack from '@mui/material/Stack';
 //Styles
-import {useStyles} from '../../styles/VehicleFormStyle'
+import { useStyles } from '../../styles/VehicleFormStyle'
 import MapComponent from "../MapComponent";
 import ButtonSend from "../VehicleComponents/ButtonSendVehicle";
+import axios from 'axios';
+import cities from '../../utils/data/cities.json';
 
-const pickers = [
-    {
-        value: 'Picker 1',
-        label: 'Picker 1',
-    },
-    {
-        value: 'Picker 2',
-        label: 'Picker 2',
-    },
-    {
-        value: 'Picker 3',
-        label: 'Picker 3',
-    },
-    {
-        value: 'Picker 4',
-        label: 'Picker 4',
-    },
-];
-
-const vehicles = [
-    {
-        value: 'Vehículo 1',
-        label: 'Vehículo 1',
-    },
-    {
-        value: 'Vehículo 2',
-        label: 'Vehículo 2',
-    },
-    {
-        value: 'Vehículo 3',
-        label: 'Vehículo 3',
-    },
-    {
-        value: 'Vehículo 4',
-        label: 'Vehículo 4',
-    },
-];
-
-const services = [
-    {
-        value: 'Servicio 1',
-        label: 'Servicio 1',
-    },
-    {
-        value: 'Servicio 2',
-        label: 'Servicio 2',
-    },
-    {
-        value: 'Servicio 3',
-        label: 'Servicio 3',
-    },
-    {
-        value: 'Servicio 4',
-        label: 'Servicio 4',
-    },
-];
 
 export default function AppointmentFormOwner() {
 
-    const classes = useStyles()
-    
+    const [appointment, setAppointment] = useState({
+       id_vehicle: "",
+       id_serviced: 0,
+       id_picker: 0,
+       pick_up_latitude: 0,
+       pick_up_longitude: 0,
+       pick_up_city: "",
+       pick_up_date: "",
+       pick_up_time: "",
+       appointment_status: "",
+       appointment_request: "",
+       owner_notes: "",
+       picker_notes: "",
+       delivery_latitude: 0,
+       delivery_longitude: 0,
+       delivery_city: "",
+       garage: ""
+    })
+    // const [vehicleEdit, setVehicleEdit] = useState([])
+
+    let handleChange = (e) => {
+
+        let name = e.target.name
+        let value = e.target.value
+        appointment[name] = value
+
+
+        //vehicle["id_owner"] = 12345671
+        //name === "brand"  ?   setBrandForm(vehicle[name]) :  name === "model" ? setModel(vehicle[name]) : setFuel(vehicle[name])
+        setAppointment(appointment)
+        console.log(appointment);
+    }
+
+    const [services, setServices] = useState([''])
+    const getServices = async () => {
+        axios.get(`http://localhost:3001/services`)
+            .then(res => { setServices(res.data) })
+            .catch(err => console.log(err))
+    }
+  
+    const [service, setService] = React.useState('Servicio 1'); //este service debería de quitarlo, quiero coger solo services en plural
+    const handleService = (event) => {
+        setService(event.target.value);
+    };
+
+    const [pickers, setPickers] = useState([''])
+    const getPickers = async () => {
+        axios.get(`http://localhost:3001/appointments/availablepickers`)
+            .then(res => { setPickers(res.data) })
+            .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        getServices()
+        getPickers()
+        getVehicles()
+    }, [])
+
     const [picker, setPicker] = React.useState('Picker 1');
     const handlePicker = (event) => {
         setPicker(event.target.value);
     };
+
+    const [vehicles, setVehicles] = useState([])
+    const getVehicles = async () => {
+        axios.get(`http://localhost:3001/vehicles/user/12345671`)
+            .then(res => { setVehicles(res.data) })
+            .catch(err => console.log(err))
+    }
+
+    const [vehicle, setVehicle] = React.useState('Vehículo 1');
+    const handleVehicles = (event) => {
+        setVehicle(event.target.value);
+    };
+
+    const [city, setCity] = useState()
+    const handleCity = (event) => {
+        setCity(event.target.value);
+    };
+
+    const classes = useStyles()
 
     const [dataMap, setDataMap] = useState()
     const [latitude, setLatitude] = useState()
@@ -93,15 +117,7 @@ export default function AppointmentFormOwner() {
         setLongitude(dataMap.longitude);
     }
 
-    const [vehicle, setVehicle] = React.useState('Vehículo 1'); //<--- Esto hay que cambiarlo
-    const handleVehicle = (event) => {
-        setVehicle(event.target.value);
-    };
 
-    const [service, setService] = React.useState('Servicio 1');
-    const handleService = (event) => {
-        setService(event.target.value);
-    };
 
     const [text, setText] = React.useState('');
     const handleText = (e) => {
@@ -118,12 +134,48 @@ export default function AppointmentFormOwner() {
         <Grid className={classes.root} container spacing={2} xs={12}>
             <Box m={2} sm={6} xs={12}>
                 <h1>Solicitar cita</h1>
+                <Grid item xs={12} mb={1}>
+                    <FormControl fullWidth>
+                        <InputLabel>Provincia de Recogida</InputLabel>
+                        <Select
+                            required
+                            label="Provincia de recogida"
+                            name="delivery_city"
+                            value={city}
+                            onChange={handleChange}>
+                            {
+                                cities.map((element) => (
+                                    <MenuItem value={element.city}>{element.city}</MenuItem>
+                                ))
+                            }
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item sm={6} xs={12} mb={1}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <Stack spacing={3}>
+                            <TimePicker
+                                label="Time"
+                                value={date}
+                                onChange={handleChange}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                            <DesktopDatePicker
+                                label="Date desktop"
+                                inputFormat="MM/dd/yyyy"
+                                value={date}
+                                onChange={handleChange}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                        </Stack>
+                    </LocalizationProvider>
+                </Grid>
                 <Box mb={1}>
                     <TextField fullWidth
                         select
                         label="Picker"
                         value={picker}
-                        onChange={handlePicker}
+                        onChange={handleChange}
                     >
                         {pickers.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
@@ -137,13 +189,12 @@ export default function AppointmentFormOwner() {
                         <TextField fullWidth
                             select
                             label="Vehículo"
-                            value={vehicle}
-                            onChange={handleVehicle}
+                            value={vehicles[0]}
+                            onChange={handleChange}
                         >
-                            {vehicles.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
+                            {vehicles.map((option) => (<MenuItem key={option.plate_number} value={option.plate_number}>
+                                {`${option.brand} ${option.model}`}
+                            </MenuItem>
                             ))}
                         </TextField>
                     </FormControl>
@@ -152,34 +203,45 @@ export default function AppointmentFormOwner() {
                     <Grid item sm={6} xs={12} mb={1}>
                         <TextField
                             id="outlined-multiline-flexible"
-                            label="Sitio de recogida"
+                            label="Calle y número de recogida"
                             multiline
                             maxRows={4}
-                            onChange={handleText}
+                            onChange={handleChange}
                         />
                     </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DateTimePicker
-                                renderInput={(props) => <TextField {...props} />}
-                                label="Fecha y hora de recogida"
-                                value={date}
-                                onChange={(newValue) => {
-                                    setDate(newValue);
-                                }}
-                            />
-                        </LocalizationProvider>
-                    </Grid>
+
                 </Grid>
+                <Box mb={1}>
+                    {/*<Button variant="contained" color="success">
+                    Siguiente
+                            </Button>*/}</Box>
+
                 <Grid container xs={12}>
                     <Grid item sm={12} xs={12} mb={1}>
                         <MapComponent getData={getDataMap}></MapComponent>
                     </Grid>
                 </Grid>
+                <Grid item xs={12} mb={1}>
+                    <FormControl fullWidth>
+                        <InputLabel>Provincia de entrega</InputLabel>
+                        <Select
+                            required
+                            label="Provincia de entrega"
+                            name="city"
+                            value={city}
+                            onChange={handleChange}>
+                            {
+                                cities.map((element) => (
+                                    <MenuItem value={element.city}>{element.city}</MenuItem>
+                                ))
+                            }
+                        </Select>
+                    </FormControl>
+                </Grid>
                 <Box mb={1}>
                     <TextField
                         id="outlined-multiline-flexible"
-                        label="Sitio de entrega"
+                        label="Calle y número de entrega"
                         multiline
                         maxRows={4}
                         fullWidth
@@ -190,11 +252,11 @@ export default function AppointmentFormOwner() {
                             select
                             label="Servicio"
                             value={service}
-                            onChange={handleService}
+                            onChange={handleChange}
                         >
                             {services.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
+                                <MenuItem key={option.id_service} value={option.service_type}>
+                                    {option.service_type}
                                 </MenuItem>
                             ))}
                         </TextField>
@@ -206,6 +268,7 @@ export default function AppointmentFormOwner() {
                         className={classes.formElement}
                         id="outlined-multiline-static"
                         label="Notas del usuario"
+                        onChange={handleChange}
                         multiline
                         rows={4}
                         fullWidth

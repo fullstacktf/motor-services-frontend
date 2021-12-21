@@ -23,7 +23,7 @@ export default function ProfileForm (){
     const [user, setUser] = useState([])
 
     const getUser = async() =>{
-        await axios.get('http://localhost:3001/users/12345671')
+        await axios.get('http://localhost:3001/users/11223300')
             .then(res=> setUser(res.data[0]))
             .catch(err=> console.log(err))
     }

@@ -72,12 +72,6 @@ export const menuItems = [
       ]
     },
     {
-      text: "Ajustes",
-      link:'/settings',
-      icon: <SettingsIcon />,
-      nestedItems: []
-    },
-    {
       text:"Salir",
       link:"/",
       icon: <LogoutIcon />,
