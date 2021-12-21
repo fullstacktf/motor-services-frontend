@@ -18,7 +18,7 @@ export default function EditProfileForm (){
     return(
         <Container>
           <div className={classes.root}>
-            <ProfileAvatar></ProfileAvatar>
+            <ProfileAvatar imgUrl="https://live.staticflickr.com/6233/6214553422_86068b52e0_b.jpg"></ProfileAvatar>
                 <ThemeProvider>
                     <TextField
                         id="input-with-icon-textfield"

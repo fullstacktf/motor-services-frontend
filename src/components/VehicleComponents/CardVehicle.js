@@ -7,6 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from "react-router-dom";
 import axios from 'axios'
 
+
 export default function CardVehicle({vehicle}){
     const handleDelete = async(vehicleID) => {
 
@@ -21,8 +22,10 @@ export default function CardVehicle({vehicle}){
                 <Card>
                     <CardMedia
                     component="img"
-                    src={`./motor-services-backend/uploads/vehicles/${vehicle.plate_number}.jpg`}
+                    src={`${vehicle.vehicle_image}`}
                     alt="image of vehicle"
+                    height="250px"
+                    width="250px"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">

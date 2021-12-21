@@ -35,7 +35,7 @@ export default function ProfileForm (){
     return(
         <Container>
           <div className={classes.root}>
-                    <ProfileAvatar imgUrl={`./motor-services-backend/uploads/users/${user.DNI}.jpg`} width={150} height={150}></ProfileAvatar>
+                    <ProfileAvatar imgUrl="https://live.staticflickr.com/6233/6214553422_86068b52e0_b.jpg" width={150} height={150}></ProfileAvatar>
                     <Typography variant="h3">{user.first_name != "" ? user.first_name : "Username" }</Typography>  
                     <div style={{display: 'flex'}}>
                         <LocationOnIcon/>
@@ -55,5 +55,4 @@ export default function ProfileForm (){
             </div>
         </Container>
     )
-
 }
