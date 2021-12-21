@@ -14,8 +14,21 @@ import axios from 'axios'
 //Styles
 import {useStyles} from '../../styles/FormsStyle'
 import ButtonSend from "./ButtonSendVehicle";
+import { Snackbar } from "@material-ui/core";
 
-export default function FormVehicle({edit, vehicleEdit}) {
+const intialVehicle = {
+    brand: "",
+    fuel: "",
+    id_owner: 0,
+    kilometers: 0,
+    model: "",
+    plate_number: "",
+    powered: 0,
+    vehicle_description: "",
+    vehicle_image: "",
+}
+
+export default function FormVehicle({edit, vehicleEdit = intialVehicle }) {
 
     const [title, setTitle] = useState("")
     const [iconButton, setIconButton] = useState()
@@ -28,18 +41,9 @@ export default function FormVehicle({edit, vehicleEdit}) {
     const [fuel, setFuel] = useState('')
     const classes = useStyles()
 
+    const[open, setOpen] = useState(false)
 
-    const [vehicle, setVehicle] = useState({
-        brand: "",
-        fuel: "",
-        id_owner: 0,
-        kilometers: 0,
-        model: "",
-        plate_number: "",
-        powered: 0,
-        vehicle_description: "",
-        vehicle_image: "",
-    })
+    const [vehicle, setVehicle] = useState(vehicleEdit)
     // const [vehicleEdit, setVehicleEdit] = useState([])
 
     let handleChange = (e) => {
@@ -54,11 +58,16 @@ export default function FormVehicle({edit, vehicleEdit}) {
 
     const sendVehicle = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/vehicles/', vehicle)
+        axios.put('http://localhost:3001/vehicles/', vehicle)
             .then(res=>console.log(res.data))
             .catch(err=>console.log(err))
         setVehicle()
+        setOpen(true)
     }
+
+    const handleClose = () => {
+        setOpen(false)
+      };
 
 
     const getBrands = async () => {
@@ -79,7 +88,7 @@ export default function FormVehicle({edit, vehicleEdit}) {
             setTitle("Añadir Vehiculo")
         }
         getBrands()
-    }, [])
+    }, [vehicleEdit])
 
 
     return (
@@ -95,7 +104,7 @@ export default function FormVehicle({edit, vehicleEdit}) {
                         name="brand"
                         value={brandForm}
                         onChange={handleChange}
-                        defaultValue={vehicle.brand}>
+                        defaultValue={vehicleEdit.brand}>
                         {
                             brands.map((element) => (
                                 <MenuItem value={element.label}>{element.label}</MenuItem>
@@ -110,9 +119,8 @@ export default function FormVehicle({edit, vehicleEdit}) {
                     label="Modelo"
                     name="model"
                     onChange={handleChange}
-                    defaultValue={vehicle.model}
+                    defaultValue={vehicleEdit.model}
                     margin="dense"
-                    id="plate_number"
                     variant="outlined"
                     type="text"
                     fullWidth
@@ -124,7 +132,7 @@ export default function FormVehicle({edit, vehicleEdit}) {
                             label="Matricula"
                             name="plate_number"
                             onChange={handleChange}
-                            defaultValue={vehicle.plate_number}
+                            defaultValue={vehicleEdit.plate_number}
                             margin="dense"
                             id="plate_number"
                             variant="outlined"
@@ -132,25 +140,24 @@ export default function FormVehicle({edit, vehicleEdit}) {
                             onChange={handleChange}
                             fullWidth
                         />
-                        {vehicle.fuel}
                     </Grid>
                 </Grid>
-                <Grid container xs={12} md={6}>
-                    <Grid item sm={4} xs={12}>
+                <Grid container xs={12} md={6} style={{display: 'flex', flexDirection: 'flex', justifyContent: 'space-between'}}>
+                    <Grid item sm={5} xs={12}>
                         <TextField
                             id="outlined-multiline-flexible"
                             label="Potencia"
                             name="powered"
                             onChange={handleChange}
-                            defaultValue={vehicle.powered}
+                            defaultValue={vehicleEdit.powered}
                             fullWidth
                         />
                     </Grid>
-                    <Grid item sm={4} xs={12}>
+                    <Grid item sm={5} xs={12}>
                         <TextField
                             name="kilometers"
                             onChange={handleChange}
-                            defaultValue={vehicle.kilometers}
+                            defaultValue={vehicleEdit.kilometers}
                             id="outlined-multiline-flexible"
                             label="Kilómetros"
                             name="kilometers"
@@ -167,7 +174,7 @@ export default function FormVehicle({edit, vehicleEdit}) {
                             name="fuel"
                             value={fuel}
                             onChange={handleChange}
-                            defaultValue={vehicle.fuel}>
+                            defaultValue={vehicleEdit.fuel}>
                             <MenuItem value="Gasolina">Gasolina</MenuItem>
                             <MenuItem value="Diesel">Diésel</MenuItem>
                             <MenuItem value="Electrico">Eléctrico</MenuItem>
@@ -220,11 +227,19 @@ export default function FormVehicle({edit, vehicleEdit}) {
                         bgcolor: 'background.paper',
                     }}
                 >
-                    {/* <Button type="submit" variant="contained">Añadir</Button> */}
-                    <ButtonSend text={title} icon={iconButton}></ButtonSend>
+                  
+                    <ButtonSend text={title} onClick={sendVehicle} icon={iconButton}></ButtonSend>
                 </Box>
             </div>
             </form>
+            <Snackbar
+                severity="info"
+                anchorOrigin={"bottom","center"}
+                open={open}
+                onClose={handleClose}
+                message="Vehiculo añadido"
+                key={"bottom","center"}
+            />
         </Container>
     )
 }

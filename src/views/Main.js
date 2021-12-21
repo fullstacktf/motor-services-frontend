@@ -1,9 +1,12 @@
+import Error404Component from "../components/Error404Component";
 import MapComponent from "../components/MapComponent";
 
 export default function Main(){
 
 
     return(
-        <MapComponent></MapComponent>
+        <div>
+        <Error404Component></Error404Component>
+        </div>
     )
 }

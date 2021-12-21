@@ -6,25 +6,28 @@ import FormVehicle from "../components/VehicleComponents/FormVehicle";
 export default function EditVehicle(){
     
     const { idVehicle } = useParams();
-    const [vehicleUpdate, setVehicleUpdate] = useState({})
+    const [vehicleUpdate, setVehicleUpdate] = useState()
 
     useEffect(() => {
+        const getVehicle = (id) => {
+            const URL_GETVEHICLE = 'http://localhost:3001/vehicles/'+id
+            axios.get(URL_GETVEHICLE)
+                .then(res => {
+                    const result = res.data[0];
+                    setVehicleUpdate(result);
+                    })
+                .catch(err => console.log(err))
+        }
+
         getVehicle(idVehicle)
-    },[])
+    },[idVehicle])
 
-    const getVehicle = (id) => {
-        const URL_GETVEHICLE = 'http://localhost:3001/vehicles/'+id
-        axios.get(URL_GETVEHICLE)
-            .then(res => {
-                const result = res.data[0];
-                setVehicleUpdate(result);
-                })
-            .catch(err => console.log(err))
+    if (!vehicleUpdate) {
+        return null
     }
-
-
-
     return(
+    
         <FormVehicle edit={true} vehicleEdit={vehicleUpdate}></FormVehicle>
+    
     )
 }

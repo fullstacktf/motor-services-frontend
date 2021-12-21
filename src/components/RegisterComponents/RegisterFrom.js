@@ -74,7 +74,6 @@ export default function RegisterForm(){
         if (day.length < 2) day = '0' + day;
 
         setDateFormat([year, month, day].join('-').toString())
-        console.log(dateFormat)
     }
 
     const sendUser = (e) => {
@@ -82,6 +81,7 @@ export default function RegisterForm(){
         axios.post('http://localhost:3001/users/',user)
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
+            
         setUser({
             DNI: 0,
             id_rol: 0,

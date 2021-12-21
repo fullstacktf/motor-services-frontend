@@ -139,6 +139,7 @@ export default function AppBarResponsive({userState,onChange}){
     const [anchor,setAnchor] = useState(null)
     const [anchor2,setAnchor2] = useState(null)
 
+
     const handleMobile = () =>{
         setMobileOpen(!mobileOpen)
     }
@@ -160,7 +161,8 @@ export default function AppBarResponsive({userState,onChange}){
     }
     const getUser = async() =>{
 
-        await axios.get('http://localhost:3001/users/11223333')
+        await axios.get('http://localhost:3001/users/11223300')
+            .then(res=> {console.log(res)})
             .then(res=> setUser(res.data[0]))
             .catch(err=> console.log(err))
     }
@@ -293,9 +295,6 @@ export default function AppBarResponsive({userState,onChange}){
                                 </Menu>
                             </Typography>
                             <Typography variant="h7">
-                                <Link className={classes.link} to="/settings">Configuracion</Link>
-                            </Typography>
-                            <Typography variant="h7">
                                 <Link className={classes.link} to="/" onClick={()=>onChange(false)}><LogoutIcon/></Link>
                             </Typography>
                         </Box>
@@ -367,8 +366,6 @@ export default function AppBarResponsive({userState,onChange}){
               <Route path="/services" element={<Services/>}>
               </Route>
               <Route path="/services/serviceID" element={<Service/>}>
-              </Route>
-              <Route path="/settings" element={<Settings/>}>
               </Route>
               <Route path="/user/schedule" element={<ScheduleZoneForm/>}>
               </Route>
