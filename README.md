@@ -81,7 +81,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 🖥️ Tech Stack
 
-**Client:** Vue,
+**Client:** React, Material UI
 
 **Server:** Node, Express
 
