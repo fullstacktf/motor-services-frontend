@@ -1,25 +1,25 @@
 import  React , {useEffect, useState}  from 'react';
-import logo from './logo.svg';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  Link
-} from 'react-router-dom';
+// import logo from './logo.svg';
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route,
+//   Navigate,
+//   Link
+// } from 'react-router-dom';
 
 //Views
 import LoginView from './views/LoginView'
-import RegisterForm from './components/RegisterComponents/RegisterFrom';
+// import RegisterForm from './components/RegisterComponents/RegisterFrom';
 import AppBarResponsive from './components/AppBar';
-import Vehicles from './views/Vehicles';
-import Services from './views/Services';
-import Main from './views/Main';
-import Settings from './views/Settings';
-import Notifications from './views/Notifications';
-import Appointment from './views/Appointments';
-import VehicleForm from './views/VehicleForm';
-import Profile from './views/Profile'
+// import Vehicles from './views/Vehicles';
+// import Services from './views/Services';
+// import Main from './views/Main';
+// import Settings from './views/Settings';
+// import Notifications from './views/Notifications';
+// import Appointment from './views/Appointments';
+// import VehicleForm from './views/VehicleForm';
+// import Profile from './views/Profile'
 import Register from './views/Register';
 import Footer from './components/Footer';
 

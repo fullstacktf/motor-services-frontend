@@ -17,11 +17,11 @@ import Profile from '../views/Profile'
 //ICONS
 // import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import PoolIcon from '@material-ui/icons/Pool';
+// import InboxIcon from '@material-ui/icons/MoveToInbox'
+// import PoolIcon from '@material-ui/icons/Pool';
 // import HomeIcon from '@material-ui/icons/Home';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import TodayIcon from '@material-ui/icons/Today';
+// import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+// import TodayIcon from '@material-ui/icons/Today';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
@@ -29,17 +29,17 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import {menuItems} from './MenuItems.js'
 
 //menu nested
-import ListSubheader from '@mui/material/ListSubheader';
+//import ListSubheader from '@mui/material/ListSubheader';
 import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
+// import DraftsIcon from '@mui/icons-material/Drafts';
+// import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
+//import StarBorder from '@mui/icons-material/StarBorder';
 
 
-import Logo from '../assets/images/pickauto_logo.png'
+//import Logo from '../assets/images/pickauto_logo.png'
 // import menuItems from '../utils/ResponsiveDrawerIcons.json'
 import Vehicles from '../views/Vehicles';
 import Services from '../views/Services';
@@ -57,11 +57,14 @@ import Service from './ServiceComponents/Service';
 import IconLogo from './IconLogo';
 import EditProfile from '../views/EditProfile';
 import ProfileAvatar from './ProfileComponents/ProfileAvatar';
-import Register from '../views/Register';
+//import Register from '../views/Register';
 import EditVehicle from '../views/EditVehicle';
 import AddVehicle from '../views/AddVehicle';
 import Error404 from '../views/Error404.JS';
 import axios from 'axios';
+import Reviews from '../views/Review';
+import RequestPicker from '../views/RequestPicker';
+import StatusPicker from '../views/StatusPicker';
 
 const DRAWER_WIDTH = 240
 const useStyles = makeStyles((theme)=>({
@@ -371,6 +374,12 @@ export default function AppBarResponsive({userState,onChange}){
               <Route path="/settings" element={<Settings/>}>
               </Route>
               <Route path="/user/schedule" element={<ScheduleZoneForm/>}>
+              </Route>
+              <Route path="/reviews" element={<Reviews/>}>
+              </Route>
+              <Route path="/picker/pendientes" element={<RequestPicker/>}>
+              </Route>
+              <Route path="/picker/aceptadas" element={<StatusPicker/>}>
               </Route>
               <Route path="*" element={<Error404/>}>
               </Route>
